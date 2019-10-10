@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import { Container } from 'semantic-ui-react'
 
-import P5Wrapper from '../P5Wrapper/index.js'
-
+import Nav from '../Nav'
+import Login from '../Login'
+// import P5Wrapper from '../P5Wrapper/index.js'
+import PostsContainer from '../../containers/PostsContainer'
 export default class App extends Component {
   
   state = {
@@ -9,45 +12,70 @@ export default class App extends Component {
     frameRate: null,
     data: {}, 
     index: 0,
+    loggedInUserId:null,
+    token: null,
     render: false
   }
 
-  componentDidMount(){
-    fetch("http://localhost:3000/data")
-    .then(res => res.json())
-    .then(res => this.setState({
-      ...this.state,
-      data: res,
-      render:true
-    }, () => localStorage.setItem('myData', JSON.stringify(this.state.data))))
+  // componentDidMount(){
+  //   fetch("http://localhost:3000/data")
+  //   .then(res => res.json())
+  //   .then(res => this.setState({
+  //     ...this.state,
+  //     data: res,
+  //     render:true,
+  //     token: localStorage.token
+  //   }, () => localStorage.setItem('myData', JSON.stringify(this.state.data))))
    
+  // }
+  
+  isLoggedIn(){
+    return !this.state.token //!!this.state.loggedInUserId
   }
 
-  onSetAppState = (newState, cb) => this.setState(newState, cb)
+  logInUser = (token, userId) => {
+    localStorage.token = token
+    localStorage.userId = userId
+    this.setState({
+      token: token,
+      loggedInUserId: userId
+    })
+  }
 
-  onSliderChange = (event) => this.setState({ slider: +event.target.value })
+  logOutUser = () => {
+    delete localStorage.token
+    delete localStorage.userId
+    this.setState({
+      token: null,
+      loggedInUserId: null
+    })
+  }
 
+  // onSetAppState = (newState, cb) => { 
+  //   this.setState(newState, cb)
+  // }
+
+  // onSliderChange = (event) => {
+  //   this.setState({ slider: +event.target.value })
+  // }
+
+      // { /* <> */}
+      // {/* {this.state.render ? <P5Wrapper p5Props={{ slider: this.state.slider, data: this.state.data, render: this.state.render}} onSetAppState={this.onSetAppState}> </P5Wrapper> : null} */}
+      // {/* </> */}
   render() {
-    console.log(this.state.render)
-    console.log(this.state.data)
     return (
-      <>
-      {/* <P5Wrapper p5Props={{ slider: this.state.slider, data: this.state.data}} onSetAppState={this.onSetAppState}> </P5Wrapper>   */}
-        {this.state.render ? <P5Wrapper p5Props={{ slider: this.state.slider, data: this.state.data, render: this.state.render}} onSetAppState={this.onSetAppState}> </P5Wrapper> : null}
-
-        <div style={{ textAlign: 'center' }}>
-          <strong>{this.state.slider}</strong>
-          <br />
-          <input
-            type="range"
-            min={5} max={290} step={1}
-            value={this.state.slider}
-            style={{ width: '90%', maxWidth: '900px' }}
-            onChange={this.onSliderChange}
-          />
-        </div>
-      </>
-    )
+      <Container>
+      <Nav/>
+      {
+        this.isLoggedIn() 
+        ? <>
+          <button onClick={ this.logOutUser }>LOG OUT</button>
+          <PostsContainer token={ this.state.token } loggedInUserId={ this.state.loggedInUserId } />
+          </> 
+        : <Login logInUser={ this.logInUser } />
+      }
+      </Container>
+      )
   }
 }
 
