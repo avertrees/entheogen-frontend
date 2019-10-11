@@ -8,7 +8,7 @@ export default class PostsContainer extends Component {
         render:false
     }
     componentDidMount(){
-        fetch("http://localhost:3000/user")
+        fetch("http://localhost:3002/user")
         .then(res=>res.json())
         .then(res=>this.setState({
             data:res,

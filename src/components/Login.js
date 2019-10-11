@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 export default class Login extends Component {
     state = {
@@ -8,16 +8,20 @@ export default class Login extends Component {
         password: "",
         errors: []
     }
+    
     logInSubmit = event => {
         event.preventDefault()
-        fetch("http://localhost:3000/tokens", {
+        console.log("login", this.state)
+        fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
+                user: {
+                    username: this.state.username,
+                    password: this.state.password
+                }
             })
         }).then(res => res.json())
             .then(data => {
@@ -26,21 +30,29 @@ export default class Login extends Component {
                         errors: data.errors
                     })
                 } else {
-                    this.props.logInUser(data.token, data.user_id)
+                    console.log(data)
+                    this.props.logInUser(data.jwt, data.user.id)
                 }
             })
     }
 
     signUpSubmit = event => {
         event.preventDefault()
+        console.log("submit", this.state)
         fetch("http://localhost:3000/users", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                 "Accept": 'application/json'
             },
             body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
+                user: {
+                    username: this.state.username,
+                    password: this.state.password,
+                    name: "firstname lastname",
+                    bio: "lorem ipsum",
+                    image_url: "https://thehappypuppysite.com/wp-content/uploads/2018/05/Pembroke-Welsh-Corgi-HP-long.jpg"
+                }
             })
         }).then(res => res.json())
             .then(data => {
@@ -49,7 +61,8 @@ export default class Login extends Component {
                         errors: data.errors
                     })
                 } else {
-                    this.props.logInUser(data.token, data.user_id)
+                    // console.log(data)
+                    this.props.logInUser(data.jwt, data.user.id)
                 }
             })
     }
@@ -57,7 +70,7 @@ export default class Login extends Component {
     onChange = event => {
         this.setState({
             [event.target.name]: event.target.value
-        })
+        }, () => console.log(this.state))
     }
 
     render() {
@@ -77,7 +90,7 @@ export default class Login extends Component {
                             <Form.Field>
                                 <label htmlFor="log_in_username">Username</label>
                                 <input 
-                                    placeholder='Email' 
+                                    placeholder='username' 
                                     id="log_in_username"
                                     type="text"
                                     onChange={this.onChange /* for controlled form input status */}
@@ -101,11 +114,11 @@ export default class Login extends Component {
                     <section>
                         <h2>Sign up</h2>
                         <Button onClick={() => this.setState({ logIn: true })}>I already signed up!!!</Button>
-                        <Form onSubmit={this.logInSubmit}>
+                        <Form onSubmit={this.signUpSubmit}>
                             <Form.Field>
                                 <label htmlFor="sign_up_username">Username</label>
                                 <input 
-                                    placeholder="email"
+                                    placeholder="username"
                                     id="sign_up_username"
                                     type="text"
                                     onChange={this.onChange}
@@ -113,18 +126,16 @@ export default class Login extends Component {
                                     value={this.state.username} />
                             </Form.Field>
                             <Form.Field>
-                                <label htmlFor="log_in_password">Password</label>
+                                <label htmlFor="sign_up_password">Password</label>
                                 <input
                                     placeholder='password'
-                                    id="log_in_password"
+                                    id="sign_up_password"
                                     type="password"
                                     onChange={this.onChange}
                                     name="password"
                                     value={this.state.password} />
                             </Form.Field>
-                            <Form.Field>
-                                <Checkbox label='I agree to the Terms and Conditions' />
-                            </Form.Field>
+                            
                             <Button type='submit'>Submit</Button>
                         </Form>
                     </section>

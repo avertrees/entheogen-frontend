@@ -30,7 +30,7 @@ export default class App extends Component {
   // }
   
   isLoggedIn(){
-    return !this.state.token //!!this.state.loggedInUserId
+    return !!this.state.token //!!this.state.loggedInUserId
   }
 
   logInUser = (token, userId) => {
