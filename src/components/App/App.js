@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Container } from 'semantic-ui-react'
-
-import Nav from '../Nav'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+// import Nav from '../Nav'
 import Login from '../Login'
 // import P5Wrapper from '../P5Wrapper/index.js'
-import PostsContainer from '../../containers/PostsContainer'
+// import PostsContainer from '../../containers/PostsContainer'
+import Dashboard from '../../containers/Dashboard'
 export default class App extends Component {
   
   state = {
@@ -64,17 +65,26 @@ export default class App extends Component {
       // {/* </> */}
   render() {
     return (
-      <Container>
-      <Nav/>
-      {
-        this.isLoggedIn() 
-        ? <>
-          <button onClick={ this.logOutUser }>LOG OUT</button>
-          <PostsContainer token={ this.state.token } loggedInUserId={ this.state.loggedInUserId } />
-          </> 
-        : <Login logInUser={ this.logInUser } />
-      }
-      </Container>
+      <Router>
+      <Route path='/' render={ 
+        () => (
+          <Container>
+            {/* <Nav /> */}
+            {
+              this.isLoggedIn()
+                ? <>
+                  <button onClick={this.logOutUser}>LOG OUT</button>
+                  <Dashboard logOutUser={this.logOutUser} token={this.state.token} loggedInUserId={this.state.loggedInUserId} />
+                  {/* <PostsContainer token={this.state.token} loggedInUserId={this.state.loggedInUserId} /> */}
+                </>
+                : <Login logInUser={this.logInUser} />
+            }
+          </Container>
+        )
+        }
+      />
+      
+      </Router>
       )
   }
 }

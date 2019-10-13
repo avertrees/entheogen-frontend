@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export default class Nav extends Component {
 //    https://react.semantic-ui.com/addons/transitionable-portal/ 
@@ -15,29 +16,45 @@ export default class Nav extends Component {
                     <img src='https://react.semantic-ui.com/logo.png' alt="react-logo" />
                 </Menu.Item>
 
-                <Menu.Item
-                    name='features'
-                    active={activeItem === 'features'}
-                    onClick={this.handleItemClick}
-                >
-                    Features
-        </Menu.Item>
+                
+                    <Menu.Item
+                        as={Link} 
+                        to="/"
+                        name='my_posts'
+                        active={activeItem === 'My Posts'}
+                        onClick={this.handleItemClick}
+                    >
+                    My Posts
+                    {/* <Link to="/">  My Posts</Link> */}
+                    </Menu.Item>                
+                
 
+                
                 <Menu.Item
-                    name='testimonials'
-                    active={activeItem === 'testimonials'}
+                    as={Link}
+                    to="/new"
+                    name='new_post'
+                    active={activeItem === 'New Post'}
                     onClick={this.handleItemClick}
                 >
-                    Testimonials
-        </Menu.Item>
+                    New Post
+                    {/* <Link to="/new"> New Post</Link> */}
+                </Menu.Item>
+                
 
+                
                 <Menu.Item
-                    name='sign-in'
-                    active={activeItem === 'sign-in'}
-                    onClick={this.handleItemClick}
+                    as={Link}
+                    to="/logout"
+                    name='logout'
+                    active={activeItem === 'logout'}
+                    onClick={() => this.props.logOutUser()}
                 >
-                    Sign-in
-        </Menu.Item>
+                    Log Out
+                    {/* <Link to="/logout">Log Out</Link> */}
+                </Menu.Item>
+                
+
             </Menu>
         )
     }

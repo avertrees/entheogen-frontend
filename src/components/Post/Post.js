@@ -8,7 +8,7 @@ export default class Post extends Component {
                 <Image src={this.props.postObj.image_url} wrapped ui={false} />
             <Card.Content>
                     <Card.Header>{this.props.postObj.title}</Card.Header>
-                <Card.Meta>Written by {this.props.author} </Card.Meta>
+                <Card.Meta>Written by:  </Card.Meta>
                 <Card.Description>
                         {this.props.postObj.description}
                 </Card.Description>
