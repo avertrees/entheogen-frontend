@@ -3,7 +3,7 @@ import { Button, Form } from 'semantic-ui-react'
 
 export default class Login extends Component {
     state = {
-        logIn: false,
+        logIn: true,
         username: "",
         password: "",
         errors: []
@@ -31,7 +31,7 @@ export default class Login extends Component {
                     })
                 } else {
                     console.log(data)
-                    this.props.logInUser(data.jwt, data.user.id)
+                    this.props.logInUser(data.jwt, data.user.id, data.user.username, data.user.name)
                 }
             })
     }

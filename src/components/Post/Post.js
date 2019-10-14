@@ -4,11 +4,11 @@ import { Card, Image } from 'semantic-ui-react'
 export default class Post extends Component {
     render() {
         return (
-        <Card>
+            <Card onClick={() => this.props.handleClick(this.props.postObj.id)}>
                 <Image src={this.props.postObj.image_url} wrapped ui={false} />
             <Card.Content>
                     <Card.Header>{this.props.postObj.title}</Card.Header>
-                <Card.Meta>Written by:  </Card.Meta>
+                    <Card.Meta>Written by: {localStorage.username} </Card.Meta>
                 <Card.Description>
                         {this.props.postObj.description}
                 </Card.Description>

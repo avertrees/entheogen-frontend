@@ -14,6 +14,8 @@ export default class App extends Component {
     data: {}, 
     index: 0,
     loggedInUserId:null,
+    username:null,
+    name:null,
     token: null,
     render: false
   }
@@ -31,24 +33,32 @@ export default class App extends Component {
   // }
   
   isLoggedIn(){
-    return !!this.state.token //!!this.state.loggedInUserId
+    return !!this.state.token || !!localStorage.token //!!this.state.loggedInUserId
   }
 
-  logInUser = (token, userId) => {
+  logInUser = (token, userId, username, name) => {
     localStorage.token = token
     localStorage.userId = userId
+    localStorage.username = username
+    localStorage.name = name
     this.setState({
       token: token,
-      loggedInUserId: userId
+      loggedInUserId: userId,
+      username: username,
+      name: name
     })
   }
 
   logOutUser = () => {
     delete localStorage.token
     delete localStorage.userId
+    delete localStorage.username
+    delete localStorage.name
     this.setState({
       token: null,
-      loggedInUserId: null
+      loggedInUserId: null,
+      username: null,
+      name:null
     })
   }
 
@@ -73,7 +83,7 @@ export default class App extends Component {
             {
               this.isLoggedIn()
                 ? <>
-                  <button onClick={this.logOutUser}>LOG OUT</button>
+                  {/* <button onClick={this.logOutUser}>LOG OUT</button> */}
                   <Dashboard logOutUser={this.logOutUser} token={this.state.token} loggedInUserId={this.state.loggedInUserId} />
                   {/* <PostsContainer token={this.state.token} loggedInUserId={this.state.loggedInUserId} /> */}
                 </>

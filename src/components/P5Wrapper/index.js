@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import sketch3 from './sketch3'
 
 export default class P5Wrapper extends Component {
+
     static propTypes = {
         p5Props: PropTypes.object.isRequired,
         onSetAppState: PropTypes.func.isRequired,
@@ -19,6 +20,15 @@ export default class P5Wrapper extends Component {
 
         // this.canvas2 = new window.p5(sketch2, 'canvas2-container')
         // this.canvas2.props = this.props.p5Props
+        // const props = this.props.p5Props
+        // const height = this.divElement.clientHeight;
+        // const width = this.divElement.clientWidth;
+        // let props = {
+        //     ...this.props.p5Props,
+        //     height, 
+        //     width
+        // }
+        
         console.log("props in P5Wrapper", this.props.p5Props)
         this.canvas3 = new window.p5(sketch3, 'canvas3-container')
         this.canvas3.props = this.props.p5Props
@@ -49,6 +59,7 @@ export default class P5Wrapper extends Component {
                 <div
                     id="canvas3-container"
                     style={{ width: "100%", height: "100%", textAlign: "center" }}
+                    
                 />
 
                 {/* <div

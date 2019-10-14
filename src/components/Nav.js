@@ -13,7 +13,7 @@ export default class Nav extends Component {
         return (
             <Menu stackable>
                 <Menu.Item>
-                    <img src='https://react.semantic-ui.com/logo.png' alt="react-logo" />
+                    <img src='https://react.semantic-ui.com/logo.png' alt="react-logo" position='left'/>
                 </Menu.Item>
 
                 
@@ -23,6 +23,7 @@ export default class Nav extends Component {
                         name='my_posts'
                         active={activeItem === 'My Posts'}
                         onClick={this.handleItemClick}
+                        // position='left'
                     >
                     My Posts
                     {/* <Link to="/">  My Posts</Link> */}
@@ -36,25 +37,35 @@ export default class Nav extends Component {
                     name='new_post'
                     active={activeItem === 'New Post'}
                     onClick={this.handleItemClick}
+                    // position='left'
                 >
                     New Post
                     {/* <Link to="/new"> New Post</Link> */}
                 </Menu.Item>
                 
 
-                
+                <Menu.Item
+                    as={Link}
+                    to="/profile"
+                    name='profile'
+                    active={activeItem === 'profile'}
+                    // onClick={() => this.props.showProfile()}
+                   
+                >
+                    {localStorage.username}
+                </Menu.Item>                
+
                 <Menu.Item
                     as={Link}
                     to="/logout"
                     name='logout'
                     active={activeItem === 'logout'}
                     onClick={() => this.props.logOutUser()}
+                    position='right'
                 >
                     Log Out
                     {/* <Link to="/logout">Log Out</Link> */}
                 </Menu.Item>
-                
-
             </Menu>
         )
     }

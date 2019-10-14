@@ -43,14 +43,17 @@ export default function (s) {
     let ang =0;
     let incr = 1;
     let deg = 0;
-    let width = 1421
-    let height = 1421
+    // let width = 1421
+    // let height = 1421
+    let width = localStorage.canvasWidth
+    let height = localStorage.canvasWidth
 
     s.setup = function () {
         s.createCanvas(width, height)
         // s.colorMode(HSL)
         s.colorMode("hsb", 360, 100, 100)
         s.background(255, 0, 0)
+        s.noLoop();
         i = 0;
         // s.colorMode("hsb")
         rad = -20;

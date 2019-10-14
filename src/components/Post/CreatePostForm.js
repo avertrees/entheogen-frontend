@@ -16,11 +16,32 @@ export default class CreatePostForm extends Component {
             [event.target.name]: event.target.value
         }, () => console.log(this.state))
     }
+    
+    handleSubmit = () => {
+        fetch("http://localhost:3000/posts",
+            {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.token
+                },
+                body:JSON.stringify({
+                    title: this.state.title,
+                    description: this.state.description,
+                    body: this.state.body,
+                    image_url: this.state.image_url,
+                    user_id: localStorage.userId
+                })
+            })
+            .then(res => res.json())
+            .then(res => console.log(res))
+    }
 
     render() {
         return (
             <>
-                <Form onSubmit={this.logInSubmit}>
+                <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                         <label htmlFor="title">Title</label>
                         <input
