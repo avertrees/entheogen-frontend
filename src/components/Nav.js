@@ -19,7 +19,7 @@ export default class Nav extends Component {
                 
                     <Menu.Item
                         as={Link} 
-                        to="/"
+                        to="/posts"
                         name='my_posts'
                         active={activeItem === 'My Posts'}
                         onClick={this.handleItemClick}

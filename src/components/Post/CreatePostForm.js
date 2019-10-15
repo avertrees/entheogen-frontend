@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form } from 'semantic-ui-react'
-
+import firebase from '../../firebase/index'
+// import fileuploader 
 export default class CreatePostForm extends Component {
     state = {
         logIn: false,

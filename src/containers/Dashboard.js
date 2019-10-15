@@ -4,11 +4,13 @@ import PostsContainer from './PostsContainer'
 import CreatePostform from '../components/Post/CreatePostForm'
 import { Switch, Route } from 'react-router-dom'
 import { Container, Message } from 'semantic-ui-react'
-
+import ViewPost from '../components/Post/ViewPost'
 export default class Dashboard extends Component {
     state = {
         posts: {},
-        render: false
+        render: false,        
+        clickedPost: {},
+        showPost: false
     }
 
     componentDidMount() {
@@ -30,20 +32,35 @@ export default class Dashboard extends Component {
         )
     }
 
+    handleClick = (id) => {
+        this.setState({
+            ...this.state,
+            clickedPost: this.findPostById(id),
+            showPost: true
+        }, () => console.log("post clicked!", this.state))
+
+    }
+
+    findPostById = (id) => {
+        return this.state.posts.find(post => post.id === id)
+    }
     render() {
         return(
             <>
                 <Nav logOutUser={this.props.logOutUser}/>
                 <Container>
                 <Message visible>Welcome, {localStorage.username}.</Message>
-            <Switch>
-                <Route exact path="/" render={() => 
-                    <PostsContainer render={this.state.render} posts={this.state.posts} token={this.props.token} loggedInUserId={this.props.loggedInUserId} /> 
-                } />
-                <Route exact path="/new" render={() =>
-                    <CreatePostform  token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
-                } />
-            </Switch>     
+                <Switch>
+                    <Route exact path="/posts" render={() => 
+                            <PostsContainer render={this.state.render} posts={this.state.posts} token={this.props.token} loggedInUserId={this.props.loggedInUserId} handleClick={this.handleClick}/> 
+                    } />
+                    <Route exact path="/new" render={() =>
+                        <CreatePostform  token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
+                    } />
+                    <Route exact path="/post" render={() =>
+                        <ViewPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
+                    } />
+                </Switch>     
                 </Container>
             </>
         )

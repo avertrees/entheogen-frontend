@@ -53,7 +53,7 @@ export default function (s) {
         // s.colorMode(HSL)
         s.colorMode("hsb", 360, 100, 100)
         s.background(255, 0, 0)
-        s.noLoop();
+        // s.noLoop();
         i = 0;
         // s.colorMode("hsb")
         rad = -20;

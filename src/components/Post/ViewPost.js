@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Image, Container, Header } from 'semantic-ui-react'
+import { Grid, Image, Header } from 'semantic-ui-react'
 import P5Wrapper from '../P5Wrapper/index.js'
 export default class ViewPost extends Component {
     state = {
@@ -11,7 +11,7 @@ export default class ViewPost extends Component {
         width:400,
     }
     componentDidMount(){
-        const height = this.divElement.clientHeight;
+        // const height = this.divElement.clientHeight;
         const width = this.divElement.clientWidth;
         // localStorage.canvasHeight = ght
         localStorage.canvasWidth = width
@@ -36,7 +36,7 @@ export default class ViewPost extends Component {
                 <Grid.Row>
                     <Grid.Column width={8}>
                         <div ref={(divElement) => this.divElement = divElement}>
-                            {this.state.render ? <P5Wrapper p5Props={{ slider: this.state.slider, data: this.state.data, render: this.state.render }} onSetAppState={this.onSetAppState}> </P5Wrapper> : null}
+                            {/* {this.state.render ? <P5Wrapper p5Props={{ slider: this.state.slider, data: this.state.data, render: this.state.render }} onSetAppState={this.onSetAppState}> </P5Wrapper> : null} */}
                         </div>
                         <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
                     </Grid.Column>
