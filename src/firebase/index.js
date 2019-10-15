@@ -2,7 +2,8 @@ import firebase from "firebase/app"
 import "firebase/storage"
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyB7uwBn6NNsZlW0SsuOXsduuWb0doVH1gE",
+    // apiKey: "AIzaSyB7uwBn6NNsZlW0SsuOXsduuWb0doVH1gE",
+    apiKey: process.env.REACT_APP_API_KEY,
     authDomain: "entheogen-a76f2.firebaseapp.com",
     databaseURL: "https://entheogen-a76f2.firebaseio.com",
     projectId: "entheogen-a76f2",
