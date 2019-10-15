@@ -8,12 +8,11 @@ export default class Nav extends Component {
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     render() {
-        const { activeItem } = this.state
-
+        const { activeItem } = this.state        
         return (
             <Menu stackable>
                 <Menu.Item>
-                    <img src='https://react.semantic-ui.com/logo.png' alt="react-logo" position='left'/>
+                    <img src={!!this.props.image_url ? this.props.image_url : "https://react.semantic-ui.com/logo.png"} alt="react-logo" position='left'/>
                 </Menu.Item>
 
                 

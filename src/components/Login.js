@@ -31,7 +31,7 @@ export default class Login extends Component {
                     })
                 } else {
                     console.log(data)
-                    this.props.logInUser(data.jwt, data.user.id, data.user.username, data.user.name)
+                    this.props.logInUser(data.jwt, data.user.id, data.user.username, data.user.name, data.user.image_url)
                 }
             })
     }
@@ -62,7 +62,7 @@ export default class Login extends Component {
                     })
                 } else {
                     // console.log(data)
-                    this.props.logInUser(data.jwt, data.user.id)
+                    this.props.logInUser(data.jwt, data.user.id, data.user.username, data.user.name, data.user.image_url)
                 }
             })
     }

@@ -17,7 +17,8 @@ export default class App extends Component {
     username:null,
     name:null,
     token: null,
-    render: false
+    render: false,
+    profile_pic: null
   }
 
   // componentDidMount(){
@@ -36,7 +37,7 @@ export default class App extends Component {
     return !!this.state.token || !!localStorage.token //!!this.state.loggedInUserId
   }
 
-  logInUser = (token, userId, username, name) => {
+  logInUser = (token, userId, username, name, image_url) => {
     localStorage.token = token
     localStorage.userId = userId
     localStorage.username = username
@@ -45,7 +46,8 @@ export default class App extends Component {
       token: token,
       loggedInUserId: userId,
       username: username,
-      name: name
+      name: name,
+      profile_pic: image_url 
     })
   }
 
@@ -84,7 +86,7 @@ export default class App extends Component {
               this.isLoggedIn()
                 ? <>
                   {/* <button onClick={this.logOutUser}>LOG OUT</button> */}
-                  <Dashboard logOutUser={this.logOutUser} token={this.state.token} loggedInUserId={this.state.loggedInUserId} />
+                  <Dashboard logOutUser={this.logOutUser} token={this.state.token} loggedInUserId={this.state.loggedInUserId} image_url={this.state.profile_pic} />
                   {/* <PostsContainer token={this.state.token} loggedInUserId={this.state.loggedInUserId} /> */}
                 </>
                 : <Login logInUser={this.logInUser} />
