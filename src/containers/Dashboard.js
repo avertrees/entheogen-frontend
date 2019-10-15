@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Nav from '../components/Nav'
 import PostsContainer from './PostsContainer'
-import CreatePostform from '../components/Post/CreatePostForm'
+import CreatePost from '../components/Post/CreatePost'
 import { Switch, Route } from 'react-router-dom'
 import { Container, Message } from 'semantic-ui-react'
 import ViewPost from '../components/Post/ViewPost'
@@ -57,7 +57,7 @@ export default class Dashboard extends Component {
                         <PostsContainer render={this.state.render} posts={this.state.posts} token={this.props.token} loggedInUserId={this.props.loggedInUserId} handleClick={this.handleClick}/> 
                     } />
                     <Route exact path="/new" render={() =>
-                        <CreatePostform  token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
+                        <CreatePost token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
                     } />
                     <Route exact path="/post" render={() =>
                         <ViewPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
