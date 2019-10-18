@@ -1,3 +1,12 @@
+// import 'webm-writer'
+// import CCapture from '../../../../node_modules/ccapture.js/src/CCapture.js'
+// import download from '../../../../node_modules/ccapture.js/src/download.js' // eslint-disable-line
+// import '../../../../node_modules/ccapture.js/src/gif.js'
+// import '../../../../node_modules/ccapture.js/src/gif.worker.js'
+// import '../../../../node_modules/ccapture.js/src/tar.js'
+// import '../../../../node_modules/ccapture.js/src/Whammy.js'
+// import WebMWriter from '../../../../node_modules/ccapture.js/src/webm-writer-0.2.0.js'
+
 export default function (s) {
     // console.log(s)
     s.props = {}
@@ -5,6 +14,20 @@ export default function (s) {
     // s._colorMode(HSB)
     // console.log(s.props)
     s.onSetAppState = () => { }
+
+    // const FORMAT = 'gif'
+    // const WORKERSFOLDER = './'
+    // const VERBOSE = false
+    // const DISPLAY = true
+    // const FPS = 60 
+    // const FRAMERATE = FPS 
+    // const FRAMELIMIT = 5 * FPS
+
+    // s.capturer = new CCapture({
+    //     format: FORMAT, workersPath: WORKERSFOLDER,
+    //     verbose: VERBOSE, display: DISPLAY,
+    //     framerate: FRAMERATE, frameLimit: FRAMELIMIT
+    // });
 
     // let x, x2, x3,x4,x5;
     // let y, y2, y3,y4,y5;
@@ -71,6 +94,9 @@ export default function (s) {
         // console.log('::: pixelDensity:', s.pixelDensity())
         console.log('::: help:', data)
         // console.log('::frame', s.frameCount)
+
+        // s.capturer.start();
+        // console.table(s.capturer);
     }
 
     s.draw = function () {
@@ -81,7 +107,7 @@ export default function (s) {
             s.noStroke()
             // let deg = 0;
             // let incr = 1;
-            let framec = s.frameCount/100
+            let framec = s.frameCount/10
             // s.props.data.delta.length = 2652
             i = parseInt(framec % data.delta.length);
             // console.log(i)
@@ -156,6 +182,10 @@ export default function (s) {
             deg = 0;
             yIn += .005;
             s.pop();
+            // s.capturer.capture(s.canvas);
+            // if(i === 60){
+            //     s.capturer.save();
+            // }
     }
     // p.myCustomRedrawAccordingToNewPropsHandler = (newProps) => {
     //     if (canvas) //Make sure the canvas has been created

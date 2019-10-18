@@ -22,7 +22,7 @@ export default class FileInput extends Component {
         this.setState({ file: filename, progress: 100, isUploading: false });
         firebase
             .storage()
-            .ref("eeg")
+            .ref("muse")
             .child(filename)
             .getDownloadURL()
             .then(url => this.setState({ file_url: url }, ()=> this.props.handleFileSuccess(url) ));
@@ -34,13 +34,13 @@ export default class FileInput extends Component {
                 {this.state.image_url && <p>File uploaded: </p>}
 
                 <label className={"ui button"} >
-                    upload EEG Data
+                    upload Muse Direct EEG Data
                     <FileUploader
                         hidden
-                        accept="eeg/*"
-                        name="eeg_url"
+                        accept="muse/*"
+                        name="muse_url"
                         randomizeFilename
-                        storageRef={firebase.storage().ref("eeg")}
+                        storageRef={firebase.storage().ref("muse")}
                         onUploadStart={this.handleUploadStart}
                         onUploadError={this.handleUploadError}
                         onUploadSuccess={this.handleUploadSuccess}
