@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Image, Header } from 'semantic-ui-react'
+import { Grid, Image, Header, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 export default class Profile extends Component {
     render() {
@@ -21,7 +21,9 @@ export default class Profile extends Component {
                         <p>
                             Name: {!!this.props.user.name? this.props.user.name : `${this.props.user.username} does not have a name yet`}
                         </p>
+                        <Link className="ui button" to="/profile/edit">edit</Link>
                     </Grid.Column>
+                    
                 </Grid.Row>
             </Grid>
 

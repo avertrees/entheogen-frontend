@@ -11,7 +11,7 @@ export default class Login extends Component {
     
     logInSubmit = event => {
         event.preventDefault()
-        console.log("login", this.state)
+        // console.log("login", this.state)
         fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
@@ -30,7 +30,7 @@ export default class Login extends Component {
                         errors: data.errors
                     })
                 } else {
-                    console.log(data)
+                    // console.log(data)
                     this.props.logInUser(data.jwt, data.user.id, data.user.username, data.user.name, data.user.image_url)
                 }
             })
@@ -38,7 +38,7 @@ export default class Login extends Component {
 
     signUpSubmit = event => {
         event.preventDefault()
-        console.log("submit", this.state)
+        // console.log("submit", this.state)
         fetch("http://localhost:3000/users", {
             method: "POST",
             headers: {

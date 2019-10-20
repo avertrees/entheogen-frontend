@@ -29,7 +29,7 @@ export default class P5Wrapper extends Component {
         //     width
         // }
         
-        console.log("props in P5Wrapper", this.props.p5Props)
+        // console.log("props in P5Wrapper", this.props.p5Props)
         this.canvas3 = new window.p5(sketch3, 'canvas3-container')
         this.canvas3.props = this.props.p5Props
         
@@ -38,7 +38,7 @@ export default class P5Wrapper extends Component {
     shouldComponentUpdate(nextProps) {
         // this.canvas1.props = nextProps.p5Props
         // this.canvas2.props = nextProps.p5Props
-        console.log("props in P5Wrapper", this.props.p5Props)
+        // console.log("props in P5Wrapper", this.props.p5Props)
         this.canvas3.props = nextProps.p5Props
         // console.log(this.canvas3.props)
         // console.log(this.canvas3.props.data.alpha.length)

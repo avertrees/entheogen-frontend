@@ -10,7 +10,7 @@
 export default function (s) {
     // console.log(s)
     s.props = {}
-    console.log("props in function", s)
+    // console.log("props in function", s)
     // s._colorMode(HSB)
     // console.log(s.props)
     s.onSetAppState = () => { }
@@ -33,10 +33,20 @@ export default function (s) {
     // let y, y2, y3,y4,y5;
     // let rad, rad2, rad3,rad4,rad5;
     // let dist, dist2, dist3, dist4, dist5;
-    let data = JSON.parse(localStorage.getItem('myData'));
-    // console.log(data)
-    let i = 0;
+    // let data = localStorage.myData
     
+    let data = JSON.parse(localStorage.myData);
+    // console.log(data)
+    // console.log(data.delta.length)
+
+    let i = 0;
+   
+    let n = 0;
+    let n2 = 0;
+    let n3 = 0;
+    let n4 = 0;
+    let n5 = 0;
+
     let x =0;
     let y =0;
     let x2 = 0; 
@@ -74,7 +84,7 @@ export default function (s) {
     s.setup = function () {
         s.createCanvas(width, height)
         // s.colorMode(HSL)
-        s.colorMode("hsb", 360, 100, 100)
+        s.colorMode("hsb", 360, 100, 100,1)
         s.background(255, 0, 0)
         // s.noLoop();
         i = 0;
@@ -90,9 +100,16 @@ export default function (s) {
         dist3 = 400;
         dist4 = 450;
         dist5 = 500;
+        
+        n = 20;
+        n2 = 100;
+        n3 = 20;
+        n4 = 100;
+        n5 = 20;
         // console.log('::: displayDensity:', s.displayDensity())
         // console.log('::: pixelDensity:', s.pixelDensity())
-        console.log('::: help:', data)
+        // console.log('::: help:', data)
+
         // console.log('::frame', s.frameCount)
 
         // s.capturer.start();
@@ -107,7 +124,7 @@ export default function (s) {
             s.noStroke()
             // let deg = 0;
             // let incr = 1;
-            let framec = s.frameCount/10
+            let framec = s.frameCount/30
             // s.props.data.delta.length = 2652
             i = parseInt(framec % data.delta.length);
             // console.log(i)
@@ -125,6 +142,12 @@ export default function (s) {
             dist4 = data.beta[i].scaled_dist;
             dist5 = data.gamma[i].scaled_dist;
 
+            n = data.delta[i].scaled_noise;
+            n2 = data.theta[i].scaled_noise;
+            n3 = data.alpha[i].scaled_noise;
+            n4 = data.beta[i].scaled_noise;
+            n5 = data.gamma[i].scaled_noise;
+
             // rad = s.props.data.delta[i].scaled_rad;
 
             // rad2 = s.props.data.theta[i].scaled_rad;
@@ -138,7 +161,8 @@ export default function (s) {
             // dist4 = s.props.data.beta[i].scaled_dist;
             // dist5 = s.props.data.gamma[i].scaled_dist;
 
-            s.fill(0, 0, 0, .1)
+            s.fill(0,0,0, 0.1)
+            // console.log("fill", s.fill.mode)
             s.rect(0, 0, width, height);
             rotateBy += .003;
             s.push();
@@ -146,39 +170,73 @@ export default function (s) {
             s.translate(width / 2, height / 2);
             s.rotate(rotateBy);
 
-            while (deg <= 360) {
-                deg += incr;
-                ang = s.radians(deg);
-                s.fill(280, 100, 100);
-                // s.fill(170, 0, 255);
-                x = s.cos(ang) * (rad + (dist * s.noise(y / dist, yIn)));
-                y = s.sin(ang) * (rad + (dist * s.noise(x / dist, yIn)));
-                s.ellipse(x, y, 1.5, 1.5);
+        while (deg <= 360) {
+            deg += incr;
+            ang = s.radians(deg);
+           
+            s.fill(280, 100, 100);
+            // s.fill(170, 0, 255);
+            x = s.cos(ang) * (rad + (dist * s.noise(y / n, yIn)));
+            y = s.sin(ang) * (rad + (dist * s.noise(x / n, yIn)));
+            s.ellipse(x, y, 1.5, 1.5);
 
-                s.fill(220, 100, 100);
-                // s.fill(0, 85, 255);
-                x2 = s.cos(ang) * (rad2 + (dist2 * s.noise(y2 / dist2, yIn)));
-                y2 = s.sin(ang) * (rad2 + (dist2 * s.noise(y2 / dist2, yIn)));
-                s.ellipse(x2, y2, 1.5, 1.5);
+            s.fill(220, 100, 100);
+            // s.fill(0, 85, 255);
+            x2 = s.cos(ang) * (rad2 + (dist2 * s.noise(y2 / n2, yIn)));
+            y2 = s.sin(ang) * (rad2 + (dist2 * s.noise(y2 / n2, yIn)));
+            s.ellipse(x2, y2, 1.5, 1.5);
 
-                s.fill(160, 100, 100);
-                // s.fill(0, 255, 170);
-                x3 = s.cos(ang) * (rad3 + (dist3 * s.noise(y3 / dist3, yIn)));
-                y3 = s.sin(ang) * (rad3 + (dist3 * s.noise(x3 / dist3, yIn)));
-                s.ellipse(x3, y3, 1.5, 1.5);
+            s.fill(160, 100, 100);
+            // s.fill(0, 255, 170);
+            x3 = s.cos(ang) * (rad3 + (dist3 * s.noise(y3 / n3, yIn)));
+            y3 = s.sin(ang) * (rad3 + (dist3 * s.noise(x3 / n3, yIn)));
+            s.ellipse(x3, y3, 1.5, 1.5);
 
-                s.fill(80, 100, 100);
-                // s.fill(170, 255, 0);
-                x4 = s.cos(ang) * (rad4 + (dist4 * s.noise(y4 / dist4, yIn)));
-                y4 = s.sin(ang) * (rad4 + (dist4 * s.noise(y4 / dist4, yIn)));
-                s.ellipse(x4, y4, 1.5, 1.5);
+            s.fill(80, 100, 100);
+            // s.fill(170, 255, 0);
+            x4 = s.cos(ang) * (rad4 + (dist4 * s.noise(y4 / n4, yIn)));
+            y4 = s.sin(ang) * (rad4 + (dist4 * s.noise(y4 / n4, yIn)));
+            s.ellipse(x4, y4, 1.5, 1.5);
 
-                s.fill(10, 100, 100);
-                // s.fill(255, 43, 0);
-                x5 = s.cos(ang) * (rad5 + (dist5 * s.noise(y5 / dist5, yIn)));
-                y5 = s.sin(ang) * (rad5 + (dist5 * s.noise(y5 / dist5, yIn)));
-                s.ellipse(x5, y5, 1.5, 1.5);
-            }
+            s.fill(10, 100, 100);
+            // s.fill(255, 43, 0);
+            x5 = s.cos(ang) * (rad5 + (dist5 * s.noise(y5 / n5, yIn)));
+            y5 = s.sin(ang) * (rad5 + (dist5 * s.noise(y5 / n5, yIn)));
+            s.ellipse(x5, y5, 1.5, 1.5);
+        }
+            // while (deg <= 360) {
+            //     deg += incr;
+            //     ang = s.radians(deg);
+            //     s.fill(280, 100, 100);
+            //     // s.fill(170, 0, 255);
+            //     x = s.cos(ang) * (rad + (dist * s.noise(y / dist, yIn)));
+            //     y = s.sin(ang) * (rad + (dist * s.noise(x / dist, yIn)));
+            //     s.ellipse(x, y, 1.5, 1.5);
+
+            //     s.fill(220, 100, 100);
+            //     // s.fill(0, 85, 255);
+            //     x2 = s.cos(ang) * (rad2 + (dist2 * s.noise(y2 / dist2, yIn)));
+            //     y2 = s.sin(ang) * (rad2 + (dist2 * s.noise(y2 / dist2, yIn)));
+            //     s.ellipse(x2, y2, 1.5, 1.5);
+
+            //     s.fill(160, 100, 100);
+            //     // s.fill(0, 255, 170);
+            //     x3 = s.cos(ang) * (rad3 + (dist3 * s.noise(y3 / dist3, yIn)));
+            //     y3 = s.sin(ang) * (rad3 + (dist3 * s.noise(x3 / dist3, yIn)));
+            //     s.ellipse(x3, y3, 1.5, 1.5);
+
+            //     s.fill(80, 100, 100);
+            //     // s.fill(170, 255, 0);
+            //     x4 = s.cos(ang) * (rad4 + (dist4 * s.noise(y4 / dist4, yIn)));
+            //     y4 = s.sin(ang) * (rad4 + (dist4 * s.noise(y4 / dist4, yIn)));
+            //     s.ellipse(x4, y4, 1.5, 1.5);
+
+            //     s.fill(10, 100, 100);
+            //     // s.fill(255, 43, 0);
+            //     x5 = s.cos(ang) * (rad5 + (dist5 * s.noise(y5 / dist5, yIn)));
+            //     y5 = s.sin(ang) * (rad5 + (dist5 * s.noise(y5 / dist5, yIn)));
+            //     s.ellipse(x5, y5, 1.5, 1.5);
+            // }
             deg = 0;
             yIn += .005;
             s.pop();

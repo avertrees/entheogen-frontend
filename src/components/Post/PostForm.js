@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Image} from 'semantic-ui-react'
 import ImageInput from './ImageInput'
 import FileInput from './FileInput'
 
@@ -13,6 +13,22 @@ export default class PostForm extends Component {
         errors: [],
     }
 
+    componentDidMount = () => {
+        const title = !!this.props.title ? this.props.title : ""
+        const description = !!this.props.description ? this.props.description : ""
+        const body = !!this.props.body ? this.props.body : ""
+        const image_url = !!this.props.image_url ? this.props.image_url : ""
+        const file_url = !!this.props.file_url ? this.props.file_url : ""
+        const defaultState = {
+            title,
+            description,
+            body, 
+            image_url,
+            file_url
+        }
+        this.setState(defaultState, () => console.log(this.state))
+
+    }
     onChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -37,42 +53,51 @@ export default class PostForm extends Component {
             error
         })
     }
+
     render() {
+        const title = !!this.props.title? this.props.title : 'title'
+        const description = !!this.props.description ? this.props.description : 'description' 
+        const body = !!this.props.body ? this.props.body : 'body' 
+        const titleVal = !!this.state.title ? this.state.title : this.props.title
+        const descriptionVal = !!this.state.description ? this.state.description : this.props.description 
+        const bodyVal = !!this.state.body ? this.state.body : this.props.body
         return (
             <>
                 <Form onSubmit={() => this.props.handleSubmit(this.state) }>
                     <Form.Field>
                         <label htmlFor="title">Title</label>
                         <input
-                            placeholder='title'
+                            placeholder={title}
                             id="title"
                             type="text"
                             onChange={this.onChange}
                             name="title"
-                            value={this.state.title} />
+                            value={titleVal} />
                     </Form.Field>
                     <Form.Field>
                         <label htmlFor="description">Description</label>
                         <input
-                            placeholder='description'
+                            placeholder={description}
                             id="description"
                             type="text"
                             onChange={this.onChange}
                             name="description"
-                            value={this.state.description} />
+                            value={descriptionVal} />
                     </Form.Field>
-                    <Form.Field>
+                    <Form.TextArea>
                         <label htmlFor="body">Body</label>
                         <input
-                            placeholder='body'
+                            placeholder={body}
                             id="body"
                             type="text"
                             onChange={this.onChange}
                             name="body"
-                            value={this.state.body} />
-                    </Form.Field>
-                    <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure}/>
-                   
+                            value={bodyVal} />
+                    </Form.TextArea>
+                    {!!this.props.image_url ? <Image alt="bloo" size='large' src={this.props.image_url} /> : null }
+                    <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure} />
+                    {!!this.props.file_url ? <p>File: {this.props.file_url}</p> : null}
+
                     <FileInput  handleFileSuccess={this.handleFileSuccess} handleFileFailure={this.handleFileFailure} />
 
                     <Button type='submit'>Submit</Button>

@@ -5,6 +5,7 @@ import CreatePost from '../components/Post/CreatePost'
 import { Switch, Route } from 'react-router-dom'
 import { Container, Message } from 'semantic-ui-react'
 import ViewPost from '../components/Post/ViewPost'
+import EditPost from '../components/Post/EditPost'
 import Profile from '../components/User/Profile'
 export default class Dashboard extends Component {
     state = {
@@ -49,9 +50,9 @@ export default class Dashboard extends Component {
     render() {
         return(
             <>
-                <Nav image_url={this.props.image_url} logOutUser={this.props.logOutUser}/>
+                <Nav image_url={this.state.user.image_url} logOutUser={this.props.logOutUser}/>
                 <Container>
-                <Message visible>Welcome, {localStorage.username}.</Message>
+                <Message visible>Welcome, {this.state.user.name}.</Message>
                 <Switch>
                     <Route exact path="/posts" render={() => 
                         <PostsContainer render={this.state.render} posts={this.state.posts} token={this.props.token} loggedInUserId={this.props.loggedInUserId} handleClick={this.handleClick}/> 
@@ -62,8 +63,14 @@ export default class Dashboard extends Component {
                     <Route exact path="/post" render={() =>
                         <ViewPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
                     } />
+                    <Route exact path="/edit" render={() =>
+                        <EditPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
+                    } />
                     <Route exact path="/profile" render={() =>
                         <Profile user={this.state.user}/>
+                    } />
+                    <Route exact path="/profile/edit" render={() =>
+                        <Profile user={this.state.user} />
                     } />
                 </Switch>     
                 </Container>

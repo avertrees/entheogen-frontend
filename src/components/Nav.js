@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default class Nav extends Component {
@@ -12,7 +12,8 @@ export default class Nav extends Component {
         return (
             <Menu stackable>
                 <Menu.Item>
-                    <img src={!!this.props.image_url ? this.props.image_url : "https://react.semantic-ui.com/logo.png"} alt="react-logo" position='left'/>
+                    <img className="ui avatar image" src={this.props.image_url} alt="profile picture" />
+                    {/* <Image src={this.props.image_url} alt="profile picture" avitar> </Image> */}
                 </Menu.Item>
 
                 

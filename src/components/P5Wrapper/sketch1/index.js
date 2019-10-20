@@ -4,8 +4,8 @@ export default function (s) {
 
     s.setup = function () {
         s.createCanvas(900, 300)
-        console.log('::: displayDensity:', s.displayDensity())
-        console.log('::: pixelDensity:', s.pixelDensity())
+        // console.log('::: displayDensity:', s.displayDensity())
+        // console.log('::: pixelDensity:', s.pixelDensity())
     }
 
     s.draw = function () {

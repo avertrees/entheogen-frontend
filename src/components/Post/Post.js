@@ -8,8 +8,8 @@ export default class Post extends Component {
             <Card onClick={() => this.props.handleClick(this.props.postObj.id)}>
                  <Image src={this.props.postObj.image_url} wrapped ui={false} /> 
             <Card.Content>
-                    <Card.Header> <Link to="/post">{this.props.postObj.title} </Link></Card.Header>  
-                    <Card.Meta>Written by: {localStorage.username} </Card.Meta>
+                    <Card.Header> <Link to="/post">{this.props.postObj.title} </Link> </Card.Header>  
+                    <Card.Meta> Written by: {localStorage.name} </Card.Meta>
                 <Card.Description>
                         {this.props.postObj.description}
                 </Card.Description>

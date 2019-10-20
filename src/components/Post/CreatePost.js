@@ -24,7 +24,7 @@ export default class CreatePost extends Component {
     // }
 
     handleSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
         fetch("http://localhost:3000/posts",
             {
                 method: "POST",
