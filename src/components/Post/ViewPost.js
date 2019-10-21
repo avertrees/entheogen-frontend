@@ -19,7 +19,7 @@ export default class ViewPost extends Component {
         const width = this.divElement.clientWidth;
         // localStorage.canvasHeight = ght
         localStorage.canvasWidth = width
-        fetch(`http://localhost:3000/data/${this.props.postObj.id}`, {
+        fetch(`https://entheogen-backend.herokuapp.com/data/${this.props.postObj.id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

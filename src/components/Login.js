@@ -12,7 +12,9 @@ export default class Login extends Component {
     logInSubmit = event => {
         event.preventDefault()
         // console.log("login", this.state)
-        fetch("http://localhost:3000/login", {
+        // http://localhost:3000/login
+        // 
+        fetch("https://entheogen-backend.herokuapp.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -39,7 +41,7 @@ export default class Login extends Component {
     signUpSubmit = event => {
         event.preventDefault()
         // console.log("submit", this.state)
-        fetch("http://localhost:3000/users", {
+        fetch("https://entheogen-backend.herokuapp.com/users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

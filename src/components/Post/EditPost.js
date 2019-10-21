@@ -4,7 +4,7 @@ import PostForm from './PostForm'
 export default class EditPost extends Component {
     handleSubmit = (data) => {
         // console.log(data)
-        fetch(`http://localhost:3000/posts/${this.props.postObj.id}`,
+        fetch(`https://entheogen-backend.herokuapp.com/posts/${this.props.postObj.id}`,
             {
                 method: "PATCH",
                 headers: {
@@ -26,7 +26,7 @@ export default class EditPost extends Component {
     }
 
     deletePost = () => {
-        fetch(`http://localhost:3000/posts/${this.props.postObj.id}`,
+        fetch(`https://entheogen-backend.herokuapp.com/posts/${this.props.postObj.id}`,
             {
                 method: "DELETE",
                 headers: {

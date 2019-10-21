@@ -17,7 +17,7 @@ export default class Dashboard extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:3000/profile", 
+        fetch("https://entheogen-backend.herokuapp.com/profile", 
             {
             method: "GET",
             headers: {

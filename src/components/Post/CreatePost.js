@@ -25,7 +25,7 @@ export default class CreatePost extends Component {
 
     handleSubmit = (data) => {
         // console.log(data)
-        fetch("http://localhost:3000/posts",
+        fetch("https://entheogen-backend.herokuapp.com/posts",
             {
                 method: "POST",
                 headers: {

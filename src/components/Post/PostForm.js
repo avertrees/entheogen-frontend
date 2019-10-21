@@ -64,35 +64,57 @@ export default class PostForm extends Component {
         return (
             <>
                 <Form onSubmit={() => this.props.handleSubmit(this.state) }>
-                    <Form.Field>
-                        <label htmlFor="title">Title</label>
+                    <Form.Input
+                        label="Title"
+                        placeholder={title}
+                        id="title"
+                        type="text"
+                        onChange={this.onChange}
+                        name="title"
+                        value={titleVal}
+                    >
+                        {/* <label htmlFor="title">Title</label>
                         <input
                             placeholder={title}
                             id="title"
                             type="text"
                             onChange={this.onChange}
                             name="title"
-                            value={titleVal} />
-                    </Form.Field>
-                    <Form.Field>
-                        <label htmlFor="description">Description</label>
+                            value={titleVal} /> */}
+                    </Form.Input>
+                    <Form.Input
+                        label="Description"
+                        placeholder={description}
+                        id="description"
+                        type="text"
+                        onChange={this.onChange}
+                        name="description"
+                        value={descriptionVal}>
+                        {/* <label htmlFor="description">Description</label>
                         <input
                             placeholder={description}
                             id="description"
                             type="text"
                             onChange={this.onChange}
                             name="description"
-                            value={descriptionVal} />
-                    </Form.Field>
-                    <Form.TextArea>
-                        <label htmlFor="body">Body</label>
-                        <input
+                            value={descriptionVal} /> */}
+                    </Form.Input>
+                    <Form.TextArea 
+                        label="Body" 
+                        placeholder={body}
+                        id="body"
+                        type="text"
+                        onChange={this.onChange}
+                        name="body"
+                        value={bodyVal}>
+                        {/* <label htmlFor="body">Body</label> */}
+                        {/* <input
                             placeholder={body}
                             id="body"
                             type="text"
                             onChange={this.onChange}
                             name="body"
-                            value={bodyVal} />
+                            value={bodyVal} /> */}
                     </Form.TextArea>
                     {!!this.props.image_url ? <Image alt="bloo" size='large' src={this.props.image_url} /> : null }
                     <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure} />
