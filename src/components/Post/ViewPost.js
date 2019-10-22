@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Image, Header } from 'semantic-ui-react'
+import { Grid, Image, Header, Container } from 'semantic-ui-react'
 import P5Wrapper from 'react-p5-wrapper'
 import sketch from '../P5Wrapper/sketch3';
 import { Link } from 'react-router-dom'
@@ -11,19 +11,19 @@ export default class ViewPost extends Component {
         data: {},
         index: 0,
         height:400,
-        width:400
-        // render:false
+        width:400,
+        render:false
     }
     
 
     componentDidMount(){
         // const height = this.divElement.clientHeight;
         // localStorage.removeItem("canvasWidth")
-
+        // const width = this.divElement.clientWidth;
         console.log("props in view Post", this.props)
-        const width = this.divElement.clientWidth;
-        // console.log(width)
         // localStorage.canvasWidth = width
+        // console.log(width)
+        
         // localStorage.canvasHeight = ght
         this.setState({
             render: this.props.renderViz,
@@ -69,30 +69,34 @@ export default class ViewPost extends Component {
     //     this.canvas3.remove()
     // }
 
+    show = () => {
+        this.setState({
+            render:true
+        })
+    }
     render() {
         // console.log(localStorage)
         return (
             <Grid>
-                <Grid.Row>
+                <Grid.Row centered>
                     <Grid.Column width={8}>
                         
                             <Header as='h2'>
                             {this.props.postObj.title}
 
-                            {this.props.renderViz ? <Link className="ui button small right floated" to="/post/viz"> View Viz </Link> : <Link className="ui disabled button small right floated" to="/post/viz"> View Viz </Link>}
+                            {this.props.renderViz ? <Link onClick={this.show} className="ui button small right floated" to="/post/viz"> View Viz </Link> : <Link className="ui disabled button small right floated" to="/post/viz"> View Viz </Link>}
                             <Link className="ui button small right floated" to="/post/edit"> Edit </Link>
                             </Header>
                             <Image src={this.props.postObj.image_url} fluid />
-                            <p>
+                            
                                 {this.props.postObj.body}
-                            </p>
+                            
                     </Grid.Column>
-                    <Grid.Column width={8}>
-                        <div ref={(divElement) => this.divElement = divElement}>
-                            {/* {this.props.renderViz ? <P5Wrapper sketch={this.state.sketch} data={this.props.data}/> : null} */}
-                            {/* {this.state.render? <P5Wrapper p5Props={{ data: this.state.data, render: this.state.render }} onSetAppState={this.onSetAppState}> </P5Wrapper> : null} */}
-                        </div>
-                    </Grid.Column>
+                    {/* <Grid.Column width={9}> */}
+                        {/* <div ref={(divElement) => this.divElement = divElement}>
+                            {this.props.renderViz ? <P5Wrapper sketch={this.state.sketch} data={this.props.data}/> : null}
+                        </div> */}
+                    {/* </Grid.Column> */}
                 </Grid.Row>
 
                 

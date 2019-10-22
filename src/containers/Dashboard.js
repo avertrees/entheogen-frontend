@@ -89,11 +89,11 @@ export default class Dashboard extends Component {
     render() {
         return(
             <>
-                <Nav image_url={this.state.user.image_url} logOutUser={this.props.logOutUser}/>
-                
-                <Container >
-                    <Grid>
-                        <Grid.Row>
+                <Nav image_url={this.state.user.image_url} logOutUser={this.props.logOutUser}/>               
+                <Container >                
+                <Grid>
+                <Grid.Row centered> 
+
                 <div ref={(divElement) => this.divElement = divElement}>
                 <Switch>
                     <Route exact path="/" render={()=> 
@@ -125,11 +125,10 @@ export default class Dashboard extends Component {
                     } />
                 </Switch>   
                     </div>  
-                        </Grid.Row>
-
-
-                    </Grid>
+                </Grid.Row>
+            </Grid>
                 </Container>
+
             </>
         )
     }

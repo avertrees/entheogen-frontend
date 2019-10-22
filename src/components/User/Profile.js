@@ -13,14 +13,19 @@ export default class Profile extends Component {
                 <Grid.Row>
                     <Grid.Column width={8}>
                         
-                        <Image src={this.props.user.image_url} fluid alt={this.props.user.bio} />                    </Grid.Column>
+                    <Image src={this.props.user.image_url} size="large" fluid alt={this.props.user.bio} />                    
+                    </Grid.Column>
+              
                     <Grid.Column width={8}>
-                        <Header as='h2'>{this.props.user.username}</Header>
+                        <Header as='h2'>{this.props.user.name}</Header>
                         <p>
-                            Bio: {this.props.user.bio}
+                            {/* {!!this.props.user.name? this.props.user.name : `${this.props.user.username} does not have a name yet`} */}
+                            Username: {this.props.user.username}
+                            {/* Name: {!!this.props.user.name? this.props.user.name : `${this.props.user.username} does not have a name yet`} */}
+                           
                         </p>
                         <p>
-                            Name: {!!this.props.user.name? this.props.user.name : `${this.props.user.username} does not have a name yet`}
+                                Bio: {this.props.user.bio}
                         </p>
                         <Link className="ui button small" to="/profile/edit">edit</Link>
                     </Grid.Column>
