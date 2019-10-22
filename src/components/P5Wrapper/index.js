@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
-// import sketch1 from './sketch1'
-// import sketch2 from './sketch2'
 import sketch3 from './sketch3'
+import { Loader } from 'semantic-ui-react'
 
 export default class P5Wrapper extends Component {
 
@@ -14,42 +12,24 @@ export default class P5Wrapper extends Component {
     
 
     componentDidMount() {
-        // this.canvas1 = new window.p5(sketch1, 'canvas1-container')
-        // this.canvas1.props = this.props.p5Props
-        // this.canvas1.onSetAppState = this.props.onSetAppState
-
-        // this.canvas2 = new window.p5(sketch2, 'canvas2-container')
-        // this.canvas2.props = this.props.p5Props
-        // const props = this.props.p5Props
-        // const height = this.divElement.clientHeight;
-        // const width = this.divElement.clientWidth;
-        // let props = {
-        //     ...this.props.p5Props,
-        //     height, 
-        //     width
-        // }
-        
-        // console.log("props in P5Wrapper", this.props.p5Props)
+        console.log("this is", this)
         this.canvas3 = new window.p5(sketch3, 'canvas3-container')
+        // console.log("now this is", this)
         this.canvas3.props = this.props.p5Props
-        
+        console.log("now this is", this)
+        console.log("canvas is", this.canvas3)
     }
 
     shouldComponentUpdate(nextProps) {
-        // this.canvas1.props = nextProps.p5Props
-        // this.canvas2.props = nextProps.p5Props
-        // console.log("props in P5Wrapper", this.props.p5Props)
         this.canvas3.props = nextProps.p5Props
-        // console.log(this.canvas3.props)
-        // console.log(this.canvas3.props.data.alpha.length)
+        console.log("canvas on update is", this.canvas3)
         return false
-
     }
 
     componentWillUnmount() {
-        // this.canvas1.remove()
-        // this.canvas2.remove()
+        console.log("canvas on remove is", this.canvas3)
         this.canvas3.remove()
+        // localStorage.myData.remove()
     }
 
     render() {
@@ -61,15 +41,6 @@ export default class P5Wrapper extends Component {
                     style={{ width: "100%", height: "100%", textAlign: "center" }}
                     
                 />
-
-                {/* <div
-                    id="canvas2-container"
-                    style={{ width: "100%", textAlign: "center" }}
-                />
-                <div
-                    id="canvas1-container"
-                    style={{ width: "100%", textAlign: "center" }}
-                /> */}
             </>
         )
     }

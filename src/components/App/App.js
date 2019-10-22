@@ -80,7 +80,8 @@ export default class App extends Component {
       <Router>
       <Route path='/' render={ 
         () => (
-          <Container>
+          // <Container id="main">
+          <>
             {/* <Nav /> */}
             {
               this.isLoggedIn()
@@ -91,7 +92,8 @@ export default class App extends Component {
                 </>
                 : <Login logInUser={this.logInUser} />
             }
-          </Container>
+        {/* </Container> */}
+        </>
         )
         }
       />

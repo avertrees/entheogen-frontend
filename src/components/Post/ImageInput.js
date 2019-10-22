@@ -7,8 +7,27 @@ export default class ImageInput extends Component {
         image: "",
         isUploading: false,
         progress: 0,
-        image_url: ""
+        image_url: "",
+        images: []
     }
+
+    // componentDidMount(){
+    //     fetch("https://entheogen-backend.herokuapp.com/images", {
+    //         method: "GET",
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'Bearer ' + localStorage.token
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(res => {
+    //         console.log(res)
+    //         this.setState({
+    //             images: res.images
+    //         })
+    //     })
+    // }
 
     handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
 
@@ -32,11 +51,13 @@ export default class ImageInput extends Component {
     render() {
         return (
             <>
-                {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-                {this.state.image_url && <Image alt="fuckoff" size='large' src={this.state.image_url} />}
-                <label className={"ui button"} >
-                    upload image
-                    <FileUploader
+
+            {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+            {this.state.image_url && <Image alt="fuckoff" size='large' src={this.state.image_url} />}
+        
+            <label className={"ui button"} >
+                upload image file
+            <FileUploader
                         hidden
                         accept="image/*"
                         name="image_url"
@@ -47,7 +68,7 @@ export default class ImageInput extends Component {
                         onUploadSuccess={this.handleUploadSuccess}
                         onProgress={this.handleProgress}
                     />
-                </label>
+            </label>
             </>
         )
     }

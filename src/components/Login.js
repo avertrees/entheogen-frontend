@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Container, Message } from 'semantic-ui-react'
 
 export default class Login extends Component {
     state = {
         logIn: true,
         username: "",
         password: "",
-        errors: []
+        errors: ""
     }
     
     logInSubmit = event => {
         event.preventDefault()
-        // console.log("login", this.state)
-        // http://localhost:3000/login
-        // 
         fetch("https://entheogen-backend.herokuapp.com/login", {
             method: "POST",
             headers: {
@@ -27,12 +24,13 @@ export default class Login extends Component {
             })
         }).then(res => res.json())
             .then(data => {
+                console.log(data)
                 if (data.errors) {
                     this.setState({
                         errors: data.errors
                     })
                 } else {
-                    // console.log(data)
+                    console.log(this.state)
                     this.props.logInUser(data.jwt, data.user.id, data.user.username, data.user.name, data.user.image_url)
                 }
             })
@@ -40,7 +38,6 @@ export default class Login extends Component {
 
     signUpSubmit = event => {
         event.preventDefault()
-        // console.log("submit", this.state)
         fetch("https://entheogen-backend.herokuapp.com/users", {
             method: "POST",
             headers: {
@@ -63,7 +60,7 @@ export default class Login extends Component {
                         errors: data.errors
                     })
                 } else {
-                    // console.log(data)
+                    console.log(this.state)
                     this.props.logInUser(data.jwt, data.user.id, data.user.username, data.user.name, data.user.image_url)
                 }
             })
@@ -76,11 +73,14 @@ export default class Login extends Component {
     }
 
     render() {
-        return <>
+        return <Container>
+            
             <ul>
-                {
+                {/* {
                     this.state.errors.map(error => <li>{error}</li>)
-                }
+                } */}
+                {!!this.state.errors ? <Message visible> {this.state.errors} </Message> : null}
+
             </ul>
             {
                 this.state.logIn
@@ -111,6 +111,7 @@ export default class Login extends Component {
                             </Form.Field>
                             <Button type='submit'>Submit</Button>
                         </Form>
+                        {/* {this.state.errors.lengh > 0 ? <Message visible>Welcome, {this.state.errors} .</Message> : null} */}
                     </section>
                     :
                     <section>
@@ -140,9 +141,10 @@ export default class Login extends Component {
                             
                             <Button type='submit'>Submit</Button>
                         </Form>
+                        {/* {this.state.errors.lengh > 0 ? <Message visible>Welcome, {this.state.errors} .</Message> : null} */}
                     </section>
             }
-        </>
+        </Container>
     }
 
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Form, Image} from 'semantic-ui-react'
 import ImageInput from './ImageInput'
 import FileInput from './FileInput'
+import ImageModal from './ImageModal'
 
 export default class PostForm extends Component {
     state = {
@@ -29,6 +30,7 @@ export default class PostForm extends Component {
         this.setState(defaultState, () => console.log(this.state))
 
     }
+
     onChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -37,7 +39,7 @@ export default class PostForm extends Component {
     handleImageSuccess = (image_url) => {
         this.setState({ image_url: image_url })
     }
-    
+
     handleImageFailure = (error) => {
         this.setState({
             error
@@ -55,75 +57,50 @@ export default class PostForm extends Component {
     }
 
     render() {
-        const title = !!this.props.title? this.props.title : 'title'
-        const description = !!this.props.description ? this.props.description : 'description' 
-        const body = !!this.props.body ? this.props.body : 'body' 
-        const titleVal = !!this.state.title ? this.state.title : this.props.title
-        const descriptionVal = !!this.state.description ? this.state.description : this.props.description 
-        const bodyVal = !!this.state.body ? this.state.body : this.props.body
         return (
             <>
                 <Form onSubmit={() => this.props.handleSubmit(this.state) }>
                     <Form.Input
                         label="Title"
-                        placeholder={title}
+                        placeholder={this.state.title}
                         id="title"
                         type="text"
                         onChange={this.onChange}
                         name="title"
-                        value={titleVal}
-                    >
-                        {/* <label htmlFor="title">Title</label>
-                        <input
-                            placeholder={title}
-                            id="title"
-                            type="text"
-                            onChange={this.onChange}
-                            name="title"
-                            value={titleVal} /> */}
-                    </Form.Input>
+                        value={this.state.title}
+                    />
+                    
                     <Form.Input
                         label="Description"
-                        placeholder={description}
+                        placeholder={this.state.description}
                         id="description"
                         type="text"
                         onChange={this.onChange}
                         name="description"
-                        value={descriptionVal}>
-                        {/* <label htmlFor="description">Description</label>
-                        <input
-                            placeholder={description}
-                            id="description"
-                            type="text"
-                            onChange={this.onChange}
-                            name="description"
-                            value={descriptionVal} /> */}
-                    </Form.Input>
+                        value={this.state.description} />
+                    
                     <Form.TextArea 
                         label="Body" 
-                        placeholder={body}
+                        placeholder={this.state.body}
                         id="body"
                         type="text"
                         onChange={this.onChange}
                         name="body"
-                        value={bodyVal}>
-                        {/* <label htmlFor="body">Body</label> */}
-                        {/* <input
-                            placeholder={body}
-                            id="body"
-                            type="text"
-                            onChange={this.onChange}
-                            name="body"
-                            value={bodyVal} /> */}
-                    </Form.TextArea>
+                        value={this.state.body} />
+                    
                     {!!this.props.image_url ? <Image alt="bloo" size='large' src={this.props.image_url} /> : null }
+                    
+                    <ImageModal handleImageSuccess={this.handleImageSuccess}/>
+
                     <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure} />
+                    
                     {!!this.props.file_url ? <p>File: {this.props.file_url}</p> : null}
 
                     <FileInput  handleFileSuccess={this.handleFileSuccess} handleFileFailure={this.handleFileFailure} />
-
+                    {/* <Form.Button content='Submit' /> */}
                     <Button type='submit'>Submit</Button>
                 </Form>
+                
             </>
         )
     }

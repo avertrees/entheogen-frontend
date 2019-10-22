@@ -6,7 +6,25 @@ export default class FileInput extends Component {
         file: "",
         isUploading: false,
         progress: 0,
-        file_url: ""
+        file_url: "",
+        files:[]
+    }
+    componentDidMount() {
+        fetch("https://entheogen-backend.herokuapp.com/files", {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.token
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            this.setState({
+                files: res.files
+            })
+        })
     }
 
     handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });

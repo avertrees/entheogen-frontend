@@ -8,11 +8,14 @@
 // import WebMWriter from '../../../../node_modules/ccapture.js/src/webm-writer-0.2.0.js'
 
 export default function (s) {
-    // console.log(s)
+    // console.log(d)
+    console.log("props in sketch", s)
     s.props = {}
+
     // console.log("props in function", s)
     // s._colorMode(HSB)
     // console.log(s.props)
+
     s.onSetAppState = () => { }
 
     // const FORMAT = 'gif'
@@ -28,16 +31,10 @@ export default function (s) {
     //     verbose: VERBOSE, display: DISPLAY,
     //     framerate: FRAMERATE, frameLimit: FRAMELIMIT
     // });
-
-    // let x, x2, x3,x4,x5;
-    // let y, y2, y3,y4,y5;
-    // let rad, rad2, rad3,rad4,rad5;
-    // let dist, dist2, dist3, dist4, dist5;
-    // let data = localStorage.myData
     
-    let data = JSON.parse(localStorage.myData);
-    // console.log(data)
-    // console.log(data.delta.length)
+    // let data = JSON.parse(localStorage.myData);
+    // console.log("props in sketch", s)
+    let data = {}
 
     let i = 0;
    
@@ -76,19 +73,20 @@ export default function (s) {
     let ang =0;
     let incr = 1;
     let deg = 0;
-    // let width = 1421
-    // let height = 1421
+ 
     let width = localStorage.canvasWidth
     let height = localStorage.canvasWidth
+    let framec;
 
     s.setup = function () {
+        console.log("props in sketch setup", s.props.data)
         s.createCanvas(width, height)
-        // s.colorMode(HSL)
+        
         s.colorMode("hsb", 360, 100, 100,1)
         s.background(255, 0, 0)
-        // s.noLoop();
+        
         i = 0;
-        // s.colorMode("hsb")
+       
         rad = -20;
         rad2 = -20;
         rad3 = -20;
@@ -106,47 +104,70 @@ export default function (s) {
         n3 = 20;
         n4 = 100;
         n5 = 20;
-        // console.log('::: displayDensity:', s.displayDensity())
-        // console.log('::: pixelDensity:', s.pixelDensity())
-        // console.log('::: help:', data)
-
-        // console.log('::frame', s.frameCount)
-
+        framec = 0
         // s.capturer.start();
         // console.table(s.capturer);
     }
+    
+    s.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+        if (props.data) {
+            console.log(props)
+            data = props.data
+            // i = parseInt(framec % data.delta.length);
+
+            // rad = data.delta[i].scaled_rad;
+
+            // rad2 = data.theta[i].scaled_rad;
+            // rad3 = data.alpha[i].scaled_rad;
+            // rad4 = data.beta[i].scaled_rad;
+            // rad5 = data.gamma[i].scaled_rad;
+
+            // dist = data.delta[i].scaled_dist;
+            // dist2 = data.theta[i].scaled_dist;
+            // dist3 = data.alpha[i].scaled_dist;
+            // dist4 = data.beta[i].scaled_dist;
+            // dist5 = data.gamma[i].scaled_dist;
+
+            // n = data.delta[i].scaled_noise;
+            // n2 = data.theta[i].scaled_noise;
+            // n3 = data.alpha[i].scaled_noise;
+            // n4 = data.beta[i].scaled_noise;
+            // n5 = data.gamma[i].scaled_noise;
+        }
+    };
 
     s.draw = function () {
         
             if (s.frameCount % 60 === 1) {
                 s.onSetAppState({ frameRate: s.frameRate().toFixed(1) })
             }
+
             s.noStroke()
-            // let deg = 0;
-            // let incr = 1;
-            let framec = s.frameCount/30
-            // s.props.data.delta.length = 2652
-            i = parseInt(framec % data.delta.length);
-            // console.log(i)
-            //i = s.props.slider
-            rad = data.delta[i].scaled_rad;
+            framec = s.frameCount / 30
+            if (data.length>0) {
+                i = parseInt(framec % data.delta.length);
+                rad = data.delta[i].scaled_rad;
 
-            rad2 = data.theta[i].scaled_rad;
-            rad3 = data.alpha[i].scaled_rad;
-            rad4 = data.beta[i].scaled_rad;
-            rad5 = data.gamma[i].scaled_rad;
+                rad2 = data.theta[i].scaled_rad;
+                rad3 = data.alpha[i].scaled_rad;
+                rad4 = data.beta[i].scaled_rad;
+                rad5 = data.gamma[i].scaled_rad;
 
-            dist = data.delta[i].scaled_dist;
-            dist2 = data.theta[i].scaled_dist;
-            dist3 = data.alpha[i].scaled_dist;
-            dist4 = data.beta[i].scaled_dist;
-            dist5 = data.gamma[i].scaled_dist;
+                dist = data.delta[i].scaled_dist;
+                dist2 = data.theta[i].scaled_dist;
+                dist3 = data.alpha[i].scaled_dist;
+                dist4 = data.beta[i].scaled_dist;
+                dist5 = data.gamma[i].scaled_dist;
 
-            n = data.delta[i].scaled_noise;
-            n2 = data.theta[i].scaled_noise;
-            n3 = data.alpha[i].scaled_noise;
-            n4 = data.beta[i].scaled_noise;
-            n5 = data.gamma[i].scaled_noise;
+                n = data.delta[i].scaled_noise;
+                n2 = data.theta[i].scaled_noise;
+                n3 = data.alpha[i].scaled_noise;
+                n4 = data.beta[i].scaled_noise;
+                n5 = data.gamma[i].scaled_noise;           
+            } 
+
+ 
+
 
             // rad = s.props.data.delta[i].scaled_rad;
 
