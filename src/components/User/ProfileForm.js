@@ -77,7 +77,7 @@ export default class PostForm extends Component {
 
                     <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure} />
 
-                    <Button onClick={(e) => this.props.handleSubmit(e,this.state)}> type='submit'>Submit</Button>
+                    <Button onClick={(e) => this.props.handleSubmit(e,this.state)} type='submit'>Submit</Button>
                 </Form>
             </>
         )
