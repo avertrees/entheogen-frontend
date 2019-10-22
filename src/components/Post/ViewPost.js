@@ -79,7 +79,7 @@ export default class ViewPost extends Component {
         return (
             <Grid>
                 <Grid.Row centered>
-                    <Grid.Column width={8}>
+                    <Grid.Column width={12}>
                         
                             <Header as='h2'>
                             {this.props.postObj.title}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Image} from 'semantic-ui-react'
+import { Button, Form, Image, Grid} from 'semantic-ui-react'
 import ImageInput from './ImageInput'
 import FileInput from './FileInput'
 import ImageModal from './ImageModal'
@@ -59,6 +59,9 @@ export default class PostForm extends Component {
     render() {
         return (
             <>
+                <Grid>
+                    <Grid.Row centered>
+                        <Grid.Column width={12}>
                 <Form onSubmit={() => this.props.handleSubmit(this.state) }>
                     <Form.Input
                         label="Title"
@@ -100,7 +103,11 @@ export default class PostForm extends Component {
                     {/* <Form.Button content='Submit' /> */}
                     <Button type='submit'>Submit</Button>
                 </Form>
-                
+                </Grid.Column>
+                    </Grid.Row>
+                            </Grid>
+                                
+                                
             </>
         )
     }

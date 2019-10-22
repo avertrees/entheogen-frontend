@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PostForm from './PostForm'
-
+import { Grid } from 'semantic-ui-react'
 export default class CreatePost extends Component {
     componentDidMount(){
         fetch("https://entheogen-backend.herokuapp.com/images",{
@@ -58,9 +58,14 @@ export default class CreatePost extends Component {
     render() {
         return (
             <>
+
+
             <h1>Create Post</h1>
             <PostForm handleSubmit={this.handleSubmit}/>
+            
+
             </>
+            
         )
     }
 }

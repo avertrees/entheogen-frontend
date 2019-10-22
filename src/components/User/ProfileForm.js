@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Image } from 'semantic-ui-react'
+import { Button, Form, Image, Grid } from 'semantic-ui-react'
 import ImageInput from '../Post/ImageInput'
 
 export default class PostForm extends Component {
@@ -51,7 +51,10 @@ export default class PostForm extends Component {
 
     render() {
         return (
-            <>
+            <>     
+            <Grid>
+                <Grid.Row centered>
+                    <Grid.Column width={12}>
                 {/* <Form onSubmit={() => this.props.handleSubmit(this.state)}> */}
                     <Form>
                     <Form.Input
@@ -79,6 +82,9 @@ export default class PostForm extends Component {
 
                     <Button onClick={(e) => this.props.handleSubmit(e,this.state)} type='submit'>Submit</Button>
                 </Form>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
             </>
         )
     }
