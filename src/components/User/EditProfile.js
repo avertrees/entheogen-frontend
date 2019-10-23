@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 // import { Button } from 'semantic-ui-react'
 import ProfileForm from './ProfileForm'
-export default class EditProfile extends Component {
+import { withRouter } from 'react-router-dom'
+class EditProfile extends Component {
     handleSubmit = (data) => {
         console.log(data)
         fetch(`https://entheogen-backend.herokuapp.com/users/${localStorage.userId}`,
@@ -19,7 +20,7 @@ export default class EditProfile extends Component {
                 })
             })
             .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => this.props.history.push(`/profile`))
     }
 
     render() {
@@ -31,3 +32,4 @@ export default class EditProfile extends Component {
         )
     }
 }
+export default withRouter(EditProfile)

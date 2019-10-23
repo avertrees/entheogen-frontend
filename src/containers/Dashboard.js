@@ -18,9 +18,6 @@ export default class Dashboard extends Component {
         user: {},
         posts: {},
         render: false,        
-        clickedPost: {},
-        showPost: false,
-        data: {},
         renderViz: false
     }
 
@@ -43,40 +40,40 @@ export default class Dashboard extends Component {
         )
     }
 
-    handleClick = (id) => {
-        this.setState({
-            ...this.state,
-            clickedPost: this.findPostById(id),
-            showPost: true
-        }, () => {
-            this.getEEGdata(id)
-            console.log("post clicked!", this.state)
-        })
-    }
+    // handleClick = (id) => {
+    //     this.setState({
+    //         ...this.state,
+    //         clickedPost: this.findPostById(id),
+    //         showPost: true
+    //     }, () => {
+    //         this.getEEGdata(id)
+    //         console.log("post clicked!", this.state)
+    //     })
+    // }
 
-    getEEGdata = (id) => {
-        // const width = this.divElement.clientWidth;
-        // localStorage.canvasHeight = ght
-        // localStorage.canvasWidth = width
-        fetch(`https://entheogen-backend.herokuapp.com/data/${id}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": 'application/json',
-                'Authorization': 'Bearer ' + localStorage.token
-            }
-        })
-            .then(res => res.json())
-            .then(res => this.setState({
-                ...this.state,
-                data: res.data,
-                renderViz: true
-            }, () => {
-                console.log(this.state)
-                localStorage.setItem('myData', JSON.stringify(this.state.data))
-            })
-            )
-    }
+    // getEEGdata = (id) => {
+    //     // const width = this.divElement.clientWidth;
+    //     // localStorage.canvasHeight = ght
+    //     // localStorage.canvasWidth = width
+    //     fetch(`https://entheogen-backend.herokuapp.com/data/${id}`, {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": 'application/json',
+    //             'Authorization': 'Bearer ' + localStorage.token
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(res => this.setState({
+    //             ...this.state,
+    //             data: res.data,
+    //             renderViz: true
+    //         }, () => {
+    //             console.log(this.state)
+    //             localStorage.setItem('myData', JSON.stringify(this.state.data))
+    //         })
+    //         )
+    // }
 
     findPostById = (id) => {
         return this.state.posts.find(post => post.id === id)
@@ -98,13 +95,15 @@ export default class Dashboard extends Component {
 
                 <div ref={(divElement) => this.divElement = divElement}>
                 <Switch>
+                    
                     <Route exact path="/" render={()=> 
                         <Message visible>Welcome, {this.state.user.name}.</Message>
                     }/>
+
                     <Route exact path="/posts" render={() => 
                         <>
                          <h1>Posts</h1>
-                        <PostsContainer posts={this.state.posts} handleClick={this.handleClick} /> 
+                        <PostsContainer  /> 
 
                         {/* <PostsContainer {...routerProps} render={this.state.render} posts={this.state.posts} token={this.props.token} loggedInUserId={this.props.loggedInUserId} handleClick={this.handleClick}/>  */}
                         </>
@@ -117,18 +116,18 @@ export default class Dashboard extends Component {
                         </>
 
                     } />
-                    <Route exact path="/post" render={() =>
+                    {/* <Route exact path="/post" render={() =>
                         <>
                             <h1>View Post</h1>
                             <ViewPost postObj={this.state.clickedPost} renderViz={this.state.renderViz} data={this.state.data} />
                         </>
 
-                    } />
+                    } /> */}
 
                     <Route exact path="/post/:id" render={() =>
                         <>
-                            <h1>View Post</h1>
-                                    <ViewPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
+                            <h1>View Post</h1> 
+                                    <ViewPost  />
                                     {/* renderViz={this.state.renderViz} data={this.state.data} */}
                         </>
 

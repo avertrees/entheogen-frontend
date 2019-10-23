@@ -91,13 +91,13 @@ export default class PostForm extends Component {
                         name="body"
                         value={this.state.body} />
                     
-                    {!!this.props.image_url ? <Image alt="bloo" size='large' src={this.props.image_url} /> : null }
+                    {!!this.state.image_url ? <Image alt="bloo" size='large' src={this.state.image_url} /> : null }
                     
                     <ImageModal handleImageSuccess={this.handleImageSuccess}/>
 
-                    <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure} />
+                    {/* <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure} /> */}
                     
-                    {!!this.props.file_url ? <p>File: {this.props.file_url}</p> : null}
+                    {!!this.state.file_url ? <p>File: {this.state.file_url}</p> : null}
 
                     <FileInput  handleFileSuccess={this.handleFileSuccess} handleFileFailure={this.handleFileFailure} />
                     {/* <Form.Button content='Submit' /> */}

@@ -6,7 +6,8 @@ export default class Post extends Component {
     render() {
         return (
             
-            <Card onClick={() => this.props.handleClick(this.props.postObj.id)}>
+            // <Card onClick={() => this.props.handleClick(this.props.postObj.id)}>
+            <Card>
                  <Image src={this.props.postObj.image_url} wrapped ui={false} /> 
             <Card.Content>
                     {/* <Card.Header>  */}

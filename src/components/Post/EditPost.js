@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import PostForm from './PostForm'
-export default class EditPost extends Component {
+import {withRouter} from 'react-router-dom'
+class EditPost extends Component {
     
     state={
         post:{},
-        render:false
+        render:false,
+        toPost: false
     }
 
     componentDidMount(){
+        console.log(this.props.location)
+
         let postId = this.renderURL()
         fetch(`https://entheogen-backend.herokuapp.com/posts/${postId}`, {
             method: "GET",
@@ -27,6 +31,7 @@ export default class EditPost extends Component {
 
     renderURL = () => {
         let url = window.location.href
+        // console.log(url)
         let urlArray = url.split("/")
         return urlArray[urlArray.length - 2]
     }
@@ -47,11 +52,18 @@ export default class EditPost extends Component {
                     body: data.body,
                     image_url: data.image_url,
                     data_file_url: data.file_url,
-                    user_id: localStorage.userId
+                    user_id: localStorage.userId,
+                    toPost: true
                 })
             })
             .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res)
+                this.props.history.push(`/posts/${this.state.post.id}`)
+                // window.location.href
+                // window.location.pathname = "/posts"
+                // this.history.replace("/posts")
+            })
     }
 
     deletePost = () => {
@@ -65,9 +77,19 @@ export default class EditPost extends Component {
                 }
             })
             .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    toPost: true
+                })
+                this.props.history.push('/posts')
+            })
     }
+
     render() {
+        // if (this.state.toPost) {
+        //     <Redirect to='/posts' />
+        // }
         return(
             <>
                 <Button onClick={this.deletePost}>Delete Post</Button>
@@ -76,3 +98,4 @@ export default class EditPost extends Component {
         )
     }
 }
+export default withRouter(EditPost)

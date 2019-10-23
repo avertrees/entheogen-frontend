@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PostForm from './PostForm'
 import { Grid } from 'semantic-ui-react'
-export default class CreatePost extends Component {
+import { withRouter } from 'react-router-dom'
+
+class CreatePost extends Component {
     componentDidMount(){
         fetch("https://entheogen-backend.herokuapp.com/images",{
             method: "GET",
@@ -51,7 +53,10 @@ export default class CreatePost extends Component {
                 })
             })
             .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => { 
+                this.props.history.push(`/posts/${res.post.id}`)
+                console.log(res)
+            })
         console.log(data)
     }
 
@@ -69,3 +74,5 @@ export default class CreatePost extends Component {
         )
     }
 }
+
+export default withRouter(CreatePost)
