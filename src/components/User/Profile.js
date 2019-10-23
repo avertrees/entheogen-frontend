@@ -6,7 +6,6 @@ export default class Profile extends Component {
         return (
         <>            
                 
-            <h1>Profile</h1>
 
             <Grid>
 

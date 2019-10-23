@@ -2,9 +2,38 @@ import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import PostForm from './PostForm'
 export default class EditPost extends Component {
+    
+    state={
+        post:{},
+        render:false
+    }
+
+    componentDidMount(){
+        let postId = this.renderURL()
+        fetch(`https://entheogen-backend.herokuapp.com/posts/${postId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": 'application/json',
+                'Authorization': 'Bearer ' + localStorage.token
+            }
+        })
+            .then(res => res.json())
+            .then(res => this.setState({
+                post: res.post,
+                render: true
+            }, () => console.log(this.state)))
+    }
+
+    renderURL = () => {
+        let url = window.location.href
+        let urlArray = url.split("/")
+        return urlArray[urlArray.length - 2]
+    }
+
     handleSubmit = (data) => {
         // console.log(data)
-        fetch(`https://entheogen-backend.herokuapp.com/posts/${this.props.postObj.id}`,
+        fetch(`https://entheogen-backend.herokuapp.com/posts/${this.state.post.id}`,
             {
                 method: "PATCH",
                 headers: {
@@ -26,7 +55,7 @@ export default class EditPost extends Component {
     }
 
     deletePost = () => {
-        fetch(`https://entheogen-backend.herokuapp.com/posts/${this.props.postObj.id}`,
+        fetch(`https://entheogen-backend.herokuapp.com/posts/${this.state.post.id}`,
             {
                 method: "DELETE",
                 headers: {
@@ -42,7 +71,7 @@ export default class EditPost extends Component {
         return(
             <>
                 <Button onClick={this.deletePost}>Delete Post</Button>
-                <PostForm handleSubmit={this.handleSubmit} body={this.props.postObj.body} title={this.props.postObj.title} description={this.props.postObj.description} image_url={this.props.postObj.image_url} file_url={this.props.postObj.data_file_url}/>
+                {this.state.render ? <PostForm handleSubmit={this.handleSubmit} body={this.state.post.body} title={this.state.post.title} description={this.state.post.description} image_url={this.state.post.image_url} file_url={this.state.post.data_file_url}/> : null }
             </>
         )
     }

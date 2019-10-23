@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import P5Wrapper from 'react-p5-wrapper'
 import { Container, Message, Grid } from 'semantic-ui-react'
 
@@ -55,9 +55,9 @@ export default class Dashboard extends Component {
     }
 
     getEEGdata = (id) => {
-        const width = this.divElement.clientWidth;
+        // const width = this.divElement.clientWidth;
         // localStorage.canvasHeight = ght
-        localStorage.canvasWidth = width
+        // localStorage.canvasWidth = width
         fetch(`https://entheogen-backend.herokuapp.com/data/${id}`, {
             method: "GET",
             headers: {
@@ -87,12 +87,14 @@ export default class Dashboard extends Component {
     }    
 
     render() {
+        // let { path, url } = useRouteMatch();
+        // console.log("path ", path, "url ", url)
         return(
             <>
                 <Nav image_url={this.state.user.image_url} logOutUser={this.props.logOutUser}/>               
                 <Container >                
-                <Grid>
-                <Grid.Row centered> 
+                {/* <Grid> */}
+                {/* <Grid.Row centered>  */}
 
                 <div ref={(divElement) => this.divElement = divElement}>
                 <Switch>
@@ -100,33 +102,75 @@ export default class Dashboard extends Component {
                         <Message visible>Welcome, {this.state.user.name}.</Message>
                     }/>
                     <Route exact path="/posts" render={() => 
-                        <PostsContainer render={this.state.render} posts={this.state.posts} token={this.props.token} loggedInUserId={this.props.loggedInUserId} handleClick={this.handleClick}/> 
+                        <>
+                         <h1>Posts</h1>
+                        <PostsContainer posts={this.state.posts} handleClick={this.handleClick} /> 
+
+                        {/* <PostsContainer {...routerProps} render={this.state.render} posts={this.state.posts} token={this.props.token} loggedInUserId={this.props.loggedInUserId} handleClick={this.handleClick}/>  */}
+                        </>
+
                     } />
                     <Route exact path="/posts/new" render={() =>
-                        <CreatePost token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
+                        <>
+                        <h1>Create Post</h1>
+                        <CreatePost />
+                        </>
+
                     } />
                     <Route exact path="/post" render={() =>
-                        <ViewPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} renderViz={this.state.renderViz} data={this.state.data}/>
+                        <>
+                            <h1>View Post</h1>
+                            <ViewPost postObj={this.state.clickedPost} renderViz={this.state.renderViz} data={this.state.data} />
+                        </>
+
                     } />
-                    <Route exact path="/post/viz" render={() =>
+
+                    <Route exact path="/post/:id" render={() =>
+                        <>
+                            <h1>View Post</h1>
+                                    <ViewPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
+                                    {/* renderViz={this.state.renderViz} data={this.state.data} */}
+                        </>
+
+                    } />
+                    {/* <Route exact path="/post/:id/viz" render={() =>
                         // (<div ref={(divElement) => this.divElement = divElement}>
                         <P5Wrapper sketch={sketch} data={this.state.data} />
                         // <P5Wrapper p5Props={{ data: this.state.data, render: this.state.renderViz }} onSetAppState={this.onSetAppState}> </P5Wrapper> 
                         // </div>)
-                    } />
+                    } /> */}
                     <Route exact path="/post/edit" render={() =>
-                        <EditPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} />
+                        <>
+                        <h1>Edit Post</h1>
+                        <EditPost />
+
+                        {/* <EditPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} /> */}
+                        </>
+                    } />
+                    <Route exact path="/post/:id/edit" render={() =>
+                        <>
+                            <h1>Edit Post</h1>
+                                    <EditPost />
+                            {/* <EditPost postObj={this.state.clickedPost} token={this.props.token} loggedInUserId={this.props.loggedInUserId} /> */}
+                        </>
                     } />
                     <Route exact path="/profile" render={() =>
+                        <>
+                        <h1>Profile</h1>
                         <Profile user={this.state.user}/>
+                        </>
                     } />
                     <Route exact path="/profile/edit" render={() =>
+                        <>
+                        <h1>Edit Profile</h1>
                         <EditProfile user={this.state.user} />
+                        </>
                     } />
                 </Switch>   
+
                     </div>  
-                </Grid.Row>
-            </Grid>
+                {/* </Grid.Row> */}
+            {/* </Grid> */}
                 </Container>
 
             </>

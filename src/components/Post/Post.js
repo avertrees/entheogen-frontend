@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 export default class Post extends Component {
+
     render() {
         return (
             
@@ -9,9 +10,9 @@ export default class Post extends Component {
                  <Image src={this.props.postObj.image_url} wrapped ui={false} /> 
             <Card.Content>
                     {/* <Card.Header>  */}
-                    <Link className="header" to="/post"> {this.props.postObj.title} </Link> 
+                    <Link className="header" to={`/post/${this.props.postObj.id}`}> {this.props.postObj.title} </Link> 
                     {/* </Card.Header>   */}
-                    <Card.Meta> <Link className="header" to="/post"> Written by: {localStorage.name} </Link> </Card.Meta>
+                    <Card.Meta> <Link className="header" to={`/post/${this.props.postObj.id}`}> Written by: {localStorage.name} </Link> </Card.Meta>
                 <Card.Description>
                         {this.props.postObj.description}
                 </Card.Description>

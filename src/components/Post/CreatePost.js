@@ -33,25 +33,25 @@ export default class CreatePost extends Component {
     }
     handleSubmit = (data) => {
         // console.log(event)
-        // fetch("https://entheogen-backend.herokuapp.com/posts",
-        //     {
-        //         method: "POST",
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json',
-        //             'Authorization': 'Bearer ' + localStorage.token
-        //         },
-        //         body:JSON.stringify({
-        //             title: data.title,
-        //             description: data.description,
-        //             body: data.body,
-        //             image_url: data.image_url,
-        //             data_file_url: data.file_url,
-        //             user_id: localStorage.userId
-        //         })
-        //     })
-        //     .then(res => res.json())
-        //     .then(res => console.log(res))
+        fetch("https://entheogen-backend.herokuapp.com/posts",
+            {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.token
+                },
+                body:JSON.stringify({
+                    title: data.title,
+                    description: data.description,
+                    body: data.body,
+                    image_url: data.image_url,
+                    data_file_url: data.file_url,
+                    user_id: localStorage.userId
+                })
+            })
+            .then(res => res.json())
+            .then(res => console.log(res))
         console.log(data)
     }
 
@@ -60,7 +60,7 @@ export default class CreatePost extends Component {
             <>
 
 
-            <h1>Create Post</h1>
+            
             <PostForm handleSubmit={this.handleSubmit}/>
             
 
