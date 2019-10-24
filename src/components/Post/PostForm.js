@@ -35,7 +35,7 @@ export default class PostForm extends Component {
     onChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
-        }, () => console.log(this.state))
+        })
     }
     handleImageSuccess = (image_url) => {
         this.setState({ image_url: image_url })

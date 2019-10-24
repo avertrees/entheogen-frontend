@@ -32,7 +32,7 @@ export default class ViewPost extends Component {
         //     render: false,
         // })
         // console.log(sketch)
-        console.log(this.renderURL())
+        // console.log(this.renderURL())
         let postId = this.renderURL()
         fetch(`https://entheogen-backend.herokuapp.com/posts/${postId}`, {
             method: "GET",
@@ -79,10 +79,10 @@ export default class ViewPost extends Component {
             )  
     }
 
-    componentDidUpdate() {
-        console.log("props in view Post", this.props)
+    // componentDidUpdate() {
+    //     console.log("props in view Post", this.props)
 
-    }
+    // }
     onSetAppState = (newState, cb) => { 
         this.setState(newState, cb)
     }

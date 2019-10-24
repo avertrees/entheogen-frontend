@@ -58,7 +58,7 @@ class EditPost extends Component {
             })
             .then(res => res.json())
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.props.history.push(`/post/${this.state.post.id}`)
                 // window.location.href
                 // window.location.pathname = "/posts"
@@ -78,7 +78,7 @@ class EditPost extends Component {
             })
             .then(res => res.json())
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     toPost: true
                 })

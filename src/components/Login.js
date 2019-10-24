@@ -24,13 +24,13 @@ export default class Login extends Component {
             })
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data.errors) {
                     this.setState({
                         errors: data.errors
                     })
                 } else {
-                    console.log(this.state)
+                    // console.log(this.state)
                     this.props.logInUser(data.jwt, data.user.id, data.user.username, data.user.name, data.user.image_url)
                 }
             })
@@ -60,7 +60,7 @@ export default class Login extends Component {
                         errors: data.errors
                     })
                 } else {
-                    console.log(this.state)
+                    // console.log(this.state)
                     this.props.logInUser(data.jwt, data.user.id, data.user.username, data.user.name, data.user.image_url)
                 }
             })
@@ -69,7 +69,7 @@ export default class Login extends Component {
     onChange = event => {
         this.setState({
             [event.target.name]: event.target.value
-        }, () => console.log(this.state))
+        })
     }
 
     render() {

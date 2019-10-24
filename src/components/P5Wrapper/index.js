@@ -16,18 +16,18 @@ export default class P5Wrapper extends Component {
         this.canvas3 = new window.p5(sketch3, 'canvas3-container')
         // console.log("now this is", this)
         this.canvas3.props = this.props.p5Props
-        console.log("now this is", this)
-        console.log("canvas is", this.canvas3)
+        // console.log("now this is", this)
+        // console.log("canvas is", this.canvas3)
     }
 
     shouldComponentUpdate(nextProps) {
         this.canvas3.props = nextProps.p5Props
-        console.log("canvas on update is", this.canvas3)
+        // console.log("canvas on update is", this.canvas3)
         return false
     }
 
     componentWillUnmount() {
-        console.log("canvas on remove is", this.canvas3)
+        // console.log("canvas on remove is", this.canvas3)
         this.canvas3.remove()
         // localStorage.myData.remove()
     }

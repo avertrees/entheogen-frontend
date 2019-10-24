@@ -30,7 +30,7 @@ export default class PostsContainer extends Component {
     }
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         const cards = this.state.render? this.state.posts.map(post => <Post key={post.id} postObj={post} />) : null
         // const renderCards = this.state.render ? this.state.posts.map(post =>
         //     <Link key={post.id} to={`/posts`}><Post key={post.id} postObj={post} handleClick={this.props.handleClick} /></Link>
