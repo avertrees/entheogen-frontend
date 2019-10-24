@@ -93,7 +93,7 @@ export default class PostForm extends Component {
                     
                     {!!this.state.image_url ? <Image alt="bloo" size='large' src={this.state.image_url} /> : null }
                     
-                    <ImageModal handleImageSuccess={this.handleImageSuccess}/>
+                    <ImageModal image_url={this.state.image_url} handleImageSuccess={this.handleImageSuccess}/>
 
                     {/* <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure} /> */}
                     

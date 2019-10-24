@@ -7,7 +7,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.ui.large.image.modal_img{
+  height: 50%
+}
 /* #main{
   background-color: lightgray;
 } */
