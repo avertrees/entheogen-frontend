@@ -55,7 +55,7 @@ export default class ImageInput extends Component {
             {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
             {/* {this.state.image_url && <Image alt="fuckoff" size='large' src={this.state.image_url} />} */}
         
-            <label className={"ui button"} >
+            <label className={"ui button compact"} >
                 upload image file
             <FileUploader
                         hidden

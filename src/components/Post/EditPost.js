@@ -59,7 +59,7 @@ class EditPost extends Component {
             .then(res => res.json())
             .then(res => {
                 console.log(res)
-                this.props.history.push(`/posts/${this.state.post.id}`)
+                this.props.history.push(`/post/${this.state.post.id}`)
                 // window.location.href
                 // window.location.pathname = "/posts"
                 // this.history.replace("/posts")
@@ -92,8 +92,11 @@ class EditPost extends Component {
         // }
         return(
             <>
-                <Button onClick={this.deletePost}>Delete Post</Button>
                 {this.state.render ? <PostForm handleSubmit={this.handleSubmit} body={this.state.post.body} title={this.state.post.title} description={this.state.post.description} image_url={this.state.post.image_url} file_url={this.state.post.data_file_url}/> : null }
+                <div>
+                    <Button className={"delete_button"} compact fluid floated="center" onClick={this.deletePost}>Delete Post</Button> 
+                </div>
+                
             </>
         )
     }

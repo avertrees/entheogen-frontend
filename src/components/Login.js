@@ -87,7 +87,7 @@ export default class Login extends Component {
                     ?
                     <section>
                         <h2>Log In</h2>
-                        <Button onClick={() => this.setState({ logIn: false })}>I need to register!!!</Button>
+                        <Button compact onClick={() => this.setState({ logIn: false })}>I need to register!!!</Button>
                         <Form onSubmit={this.logInSubmit}>
                             <Form.Field>
                                 <label htmlFor="log_in_username">Username</label>
@@ -109,14 +109,14 @@ export default class Login extends Component {
                                     name="password"
                                     value={this.state.password} />
                             </Form.Field>
-                            <Button type='submit'>Submit</Button>
+                            <Button compact type='submit'>Submit</Button>
                         </Form>
                         {/* {this.state.errors.lengh > 0 ? <Message visible>Welcome, {this.state.errors} .</Message> : null} */}
                     </section>
                     :
                     <section>
                         <h2>Sign up</h2>
-                        <Button onClick={() => this.setState({ logIn: true })}>I already signed up!!!</Button>
+                        <Button compact onClick={() => this.setState({ logIn: true })}>I already signed up!!!</Button>
                         <Form onSubmit={this.signUpSubmit}>
                             <Form.Field>
                                 <label htmlFor="sign_up_username">Username</label>
@@ -139,7 +139,7 @@ export default class Login extends Component {
                                     value={this.state.password} />
                             </Form.Field>
                             
-                            <Button type='submit'>Submit</Button>
+                            <Button compact type='submit'>Submit</Button>
                         </Form>
                         {/* {this.state.errors.lengh > 0 ? <Message visible>Welcome, {this.state.errors} .</Message> : null} */}
                     </section>

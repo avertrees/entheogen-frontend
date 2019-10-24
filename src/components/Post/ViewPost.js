@@ -110,7 +110,7 @@ export default class ViewPost extends Component {
                         
                             <Header as='h2'>
                             {this.state.post.title}
-                            {this.state.renderViz ? <Button onClick={this.show} compact floated="right" to={`/post/${this.state.post.id}/viz`}> View Viz </Button> : <Button disabled compact floated="right" > View Viz </Button>}
+                            {this.state.renderViz ? <Button onClick={this.show} compact floated="right" to={`/post/${this.state.post.id}/viz`}> View Viz </Button> : <Button disabled loading compact floated="right" > View Viz </Button>}
 
                             {/* {this.props.renderViz ? <Link onClick={this.show} className="ui button small right floated" to="/post/viz"> View Viz </Link> : <Link className="ui disabled button small right floated" to="/post/viz"> View Viz </Link>} */}
                             <Link className="ui button compact right floated" to={`/post/${this.state.post.id}/edit`}> Edit </Link>

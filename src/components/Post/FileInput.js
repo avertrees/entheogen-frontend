@@ -51,7 +51,7 @@ export default class FileInput extends Component {
                 {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
                 {this.state.image_url && <p>File uploaded: </p>}
 
-                <label className={"ui button"} >
+                <label className={"ui button compact"} >
                     upload Muse Direct EEG Data
                     <FileUploader
                         hidden

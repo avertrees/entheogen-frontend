@@ -12,6 +12,7 @@ export default class PostForm extends Component {
         image_url: "",
         file_url: "",
         errors: [],
+        isValid: false
     }
 
     componentDidMount = () => {
@@ -56,10 +57,13 @@ export default class PostForm extends Component {
         })
     }
 
+    isValid = () => {
+        return this.state.file_url && this.state.file_url !== ""
+    }
     render() {
         return (
             <>
-                <Grid>
+                <Grid >
                     <Grid.Row centered>
                         <Grid.Column width={12}>
                 <Form onSubmit={() => this.props.handleSubmit(this.state) }>
@@ -91,7 +95,7 @@ export default class PostForm extends Component {
                         name="body"
                         value={this.state.body} />
                     
-                    {!!this.state.image_url ? <Image alt="bloo" size='large' src={this.state.image_url} /> : null }
+                                {!!this.state.image_url ? <Image className="field" åalt="bloo" size='large' src={this.state.image_url} /> : null }
                     
                     <ImageModal image_url={this.state.image_url} handleImageSuccess={this.handleImageSuccess}/>
 
@@ -101,13 +105,13 @@ export default class PostForm extends Component {
 
                     <FileInput  handleFileSuccess={this.handleFileSuccess} handleFileFailure={this.handleFileFailure} />
                     {/* <Form.Button content='Submit' /> */}
-                    <Button type='submit'>Submit</Button>
+                    {this.isValid ? <Button compact type='submit'>Submit</Button> : <Button disabled compact type='submit'>Submit</Button> }
                 </Form>
                 </Grid.Column>
                     </Grid.Row>
-                            </Grid>
-                                
-                                
+                </Grid>
+                    
+                    
             </>
         )
     }

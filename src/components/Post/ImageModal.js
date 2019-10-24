@@ -54,8 +54,8 @@ export default class ImageModal extends Component {
     handleOpen = () => this.setState({ modalOpen: true })
 
     handleCancel = () => this.setState({ modalOpen: false })
-    
-    handleClose = (url) => this.setState({ modalOpen: false }, () => this.props.handleImageSuccess(this.state.image_url))
+    // this.handleImageSuccess(this.state.image_url)
+    handleClose = () => this.setState({ modalOpen: false }, () => this.props.handleImageSuccess(this.state.image_url) )
 
     handleClick = (url) => this.setState({ image_url:url }, () => console.log(url))
     
@@ -87,12 +87,17 @@ export default class ImageModal extends Component {
             <>
                 {/* <p className="ui button">Show Modal</p> */}
                 <Modal 
-                    trigger={<label onClick={this.handleOpen} className={"ui button"} >
+                    trigger={<label onClick={this.handleOpen} className={"ui compact button"} >
                     select an image </label>} 
                     open={this.state.modalOpen} 
                     // onClose={this.close}    
                 >
-                    <Modal.Header>Select a Photo</Modal.Header>
+                    <Modal.Header>Select a Photo                             
+                    <Button.Group compact floated="right">
+                        <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure} />
+                        <Button onClick={this.handleCancel} negative>Cancel</Button>
+                        <Button onClick={this.handleClose} positive>OK</Button>
+                    </Button.Group></Modal.Header>
                     <Modal.Content image>
                         {/* <Image wrapped size='medium' src={this.state.image_url} /> */}
                         {/* {this.state.isUploading && <p>Progress: {this.state.progress}</p>} */}
@@ -113,11 +118,6 @@ export default class ImageModal extends Component {
                                 labelPosition='right'
                                 content='Yes'
                             /> */}
-                            <ImageInput handleImageSuccess={this.handleImageSuccess} handleImageFailure={this.handleImageFailure} />
-
-                            <Button onClick={this.handleCancel} negative>Cancel</Button>
-                            <Button onClick={this.handleClose} positive>OK</Button>
-
                         </Modal.Actions>
                     </Modal.Content>
                 </Modal>

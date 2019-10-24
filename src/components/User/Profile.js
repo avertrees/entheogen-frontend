@@ -26,7 +26,7 @@ export default class Profile extends Component {
                         <p>
                                 Bio: {this.props.user.bio}
                         </p>
-                        <Link className="ui button small" to="/profile/edit">edit</Link>
+                            <Link className="ui button compact" to="/profile/edit">edit</Link>
                     </Grid.Column>
                     
                 </Grid.Row>

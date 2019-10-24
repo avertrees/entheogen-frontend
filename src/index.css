@@ -13,6 +13,10 @@ body {
 /* #main{
   background-color: lightgray;
 } */
+.ui.compact.fluid.center.floated.button.delete_button{
+margin: 1em 0 0;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
