@@ -54,10 +54,10 @@ class CreatePost extends Component {
             })
             .then(res => res.json())
             .then(res => { 
-                this.props.history.push(`/posts/${res.post.id}`)
-                console.log(res)
+                this.props.history.push(`/post/${res.post.id}`)
+                // console.log(res)
             })
-        console.log(data)
+        // console.log(data)
     }
 
     render() {
