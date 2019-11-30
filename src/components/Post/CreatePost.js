@@ -63,12 +63,7 @@ class CreatePost extends Component {
     render() {
         return (
             <>
-
-
-            
             <PostForm handleSubmit={this.handleSubmit}/>
-            
-
             </>
             
         )

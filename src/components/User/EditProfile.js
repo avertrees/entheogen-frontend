@@ -4,7 +4,7 @@ import ProfileForm from './ProfileForm'
 import { withRouter } from 'react-router-dom'
 class EditProfile extends Component {
     handleSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
         fetch(`https://entheogen-backend.herokuapp.com/users/${localStorage.userId}`,
             {
                 method: "PATCH",
@@ -26,7 +26,6 @@ class EditProfile extends Component {
     render() {
         return (
             <>   
-                
                 <ProfileForm handleSubmit={this.handleSubmit} user={this.props.user}/>
             </>
         )

@@ -5,8 +5,6 @@ export default class Profile extends Component {
     render() {
         return (
         <>            
-                
-
             <Grid>
 
                 <Grid.Row>
@@ -21,7 +19,6 @@ export default class Profile extends Component {
                             {/* {!!this.props.user.name? this.props.user.name : `${this.props.user.username} does not have a name yet`} */}
                             Username: {this.props.user.username}
                             {/* Name: {!!this.props.user.name? this.props.user.name : `${this.props.user.username} does not have a name yet`} */}
-                           
                         </p>
                         <p>
                                 Bio: {this.props.user.bio}
