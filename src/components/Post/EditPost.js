@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import PostForm from './PostForm'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 class EditPost extends Component {
     
     state={

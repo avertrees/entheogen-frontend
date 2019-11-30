@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image } from 'semantic-ui-react'
+// import { Image } from 'semantic-ui-react'
 import firebase from '../../firebase/index'
 import FileUploader from "react-firebase-file-uploader";
 export default class ImageInput extends Component {

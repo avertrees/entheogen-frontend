@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Image, Grid} from 'semantic-ui-react'
-import ImageInput from './ImageInput'
+// import ImageInput from './ImageInput'
 import FileInput from './FileInput'
 import ImageModal from './ImageModal'
 

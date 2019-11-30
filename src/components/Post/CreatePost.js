@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PostForm from './PostForm'
-import { Grid } from 'semantic-ui-react'
+// import { Grid } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 
 class CreatePost extends Component {
