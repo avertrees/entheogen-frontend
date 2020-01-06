@@ -18,22 +18,6 @@ export default function (s) {
 
     s.onSetAppState = () => { }
 
-    // const FORMAT = 'gif'
-    // const WORKERSFOLDER = './'
-    // const VERBOSE = false
-    // const DISPLAY = true
-    // const FPS = 60 
-    // const FRAMERATE = FPS 
-    // const FRAMELIMIT = 5 * FPS
-
-    // s.capturer = new CCapture({
-    //     format: FORMAT, workersPath: WORKERSFOLDER,
-    //     verbose: VERBOSE, display: DISPLAY,
-    //     framerate: FRAMERATE, frameLimit: FRAMELIMIT
-    // });
-    
-    // let data = JSON.parse(localStorage.myData);
-    // console.log("props in sketch", s)
     let data = {}
 
     let i = 0;
@@ -85,7 +69,7 @@ export default function (s) {
     let deltaL = 0
 
     s.setup = function () {
-        console.log("props in sketch setup", s.props.data)
+        // console.log("props in sketch setup", s.props.data)
         s.createCanvas(width, height)
         
         s.colorMode("hsb", 360, 100, 100,1)
@@ -111,8 +95,6 @@ export default function (s) {
         n4 = 100;
         n5 = 20;
         framec = 0
-        // s.capturer.start();
-        // console.table(s);
     }
     
     s.myCustomRedrawAccordingToNewPropsHandler = function (props) {
