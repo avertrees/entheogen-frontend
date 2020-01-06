@@ -1,20 +1,7 @@
-// import 'webm-writer'
-// import CCapture from '../../../../node_modules/ccapture.js/src/CCapture.js'
-// import download from '../../../../node_modules/ccapture.js/src/download.js' // eslint-disable-line
-// import '../../../../node_modules/ccapture.js/src/gif.js'
-// import '../../../../node_modules/ccapture.js/src/gif.worker.js'
-// import '../../../../node_modules/ccapture.js/src/tar.js'
-// import '../../../../node_modules/ccapture.js/src/Whammy.js'
-// import WebMWriter from '../../../../node_modules/ccapture.js/src/webm-writer-0.2.0.js'
-
 export default function (s) {
-    // console.log(d)
+
     console.log("props in sketch", s)
     s.props = {}
-
-    // console.log("props in function", s)
-    // s._colorMode(HSB)
-    // console.log(s.props)
 
     s.onSetAppState = () => { }
 
