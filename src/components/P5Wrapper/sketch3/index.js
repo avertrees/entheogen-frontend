@@ -86,7 +86,7 @@ export default function (s) {
     
     s.myCustomRedrawAccordingToNewPropsHandler = function (props) {
         if (props.data) {
-            console.log(props)
+            // console.log(props)
             data = props.data
             render = true
         }
@@ -130,7 +130,7 @@ export default function (s) {
                 n4 = data.beta[i].scaled_noise;
                 n5 = data.gamma[i].scaled_noise;           
             } 
-             console.log("index is", i)
+            // console.log("index is", i)
             s.fill(0,0,0, 0.1)
             // console.log("fill", s.fill.mode)
             s.rect(0, 0, width, height);
@@ -148,7 +148,6 @@ export default function (s) {
             if(deltaL === 100){
                 // console.log("render delta")
                 s.fill(280, 100, deltaL);
-                // s.fill(170, 0, 255);
                 x = s.cos(ang) * (rad + (dist * s.noise(y / n, yIn)));
                 y = s.sin(ang) * (rad + (dist * s.noise(x / n, yIn)));
                 s.ellipse(x, y, 1.5, 1.5);
@@ -158,7 +157,6 @@ export default function (s) {
                 // console.log("render theta")
                 // theta
                 s.fill(240, 100, thetaL);
-                // s.fill(0, 85, 255);
                 x2 = s.cos(ang) * (rad2 + (dist2 * s.noise(y2 / n2, yIn)));
                 y2 = s.sin(ang) * (rad2 + (dist2 * s.noise(y2 / n2, yIn)));
                 s.ellipse(x2, y2, 1.5, 1.5);
@@ -168,7 +166,6 @@ export default function (s) {
                 // console.log("render alpha")
                 // alpha
                 s.fill(100, 100, alphaL);
-                // s.fill(0, 255, 170);
                 x3 = s.cos(ang) * (rad3 + (dist3 * s.noise(y3 / n3, yIn)));
                 y3 = s.sin(ang) * (rad3 + (dist3 * s.noise(x3 / n3, yIn)));
                 s.ellipse(x3, y3, 1.5, 1.5);
@@ -177,7 +174,6 @@ export default function (s) {
                 // console.log("render beta")
                 // beta
                 s.fill(50, 100, betaL);
-                // s.fill(170, 255, 0);
                 x4 = s.cos(ang) * (rad4 + (dist4 * s.noise(y4 / n4, yIn)));
                 y4 = s.sin(ang) * (rad4 + (dist4 * s.noise(y4 / n4, yIn)));
                 s.ellipse(x4, y4, 1.5, 1.5);
@@ -187,7 +183,6 @@ export default function (s) {
                 // console.log("render gamma")
                 // gamma
                 s.fill(0, 100, gammaL);
-                // s.fill(255, 43, 0);
                 x5 = s.cos(ang) * (rad5 + (dist5 * s.noise(y5 / n5, yIn)));
                 y5 = s.sin(ang) * (rad5 + (dist5 * s.noise(y5 / n5, yIn)));
                 s.ellipse(x5, y5, 1.5, 1.5);
@@ -197,10 +192,6 @@ export default function (s) {
             deg = 0;
             yIn += .005;
             s.pop();
-            // s.capturer.capture(s.canvas);
-            // if(i === 60){
-            //     s.capturer.save();
-            // }
     }
 
 }
